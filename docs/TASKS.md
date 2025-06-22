@@ -18,11 +18,11 @@
 
 ### 1.1 Core Data Structures
 
-- [ ] `ExportNode` interface implementation
-- [ ] `VaultContext` and `VaultContextNote` interfaces
-- [ ] `ExportConfiguration` state management
-- [ ] Obsidian API integration layer
-- [ ] Note metadata extraction utilities
+- [x] `ExportNode` interface implementation
+- [x] `VaultContext` and `VaultContextNote` interfaces
+- [x] `ExportConfiguration` state management (defined interface)
+- [x] Obsidian API integration layer (created placeholder class)
+- [x] Note metadata extraction utilities (created placeholder class)
 
 ### 1.2 BFS Traversal Engine
 
