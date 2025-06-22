@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Major UI improvements:
+  - **Modern Card-Based Layout**: Replaced dividing lines with clean, organized sections.
+  - **Enhanced Visual Hierarchy**: Added clear section headers with descriptive emojis.
+  - **Smart Help System**: Added informative tooltips and help text throughout the interface.
+  - **Token Awareness**: Added smart warnings for LLM context limits (GPT-4, Claude).
+  - **Improved Status Feedback**: Added visual indicators for operations (✅, ❌, 🔄).
+  - **Better Export Format Descriptions**: Added clear explanations for each export type.
+  - **Responsive Design**: Added mobile-friendly layout adjustments.
+  - **Enhanced Typography**: Improved font sizes, weights, and spacing.
+  - **Modern Button Styling**: Added hover effects and better visual feedback.
 - Split Markdown export into two formats:
   - **LLM-Optimized Markdown**: A detailed format with metadata and structure, similar to the XML export.
   - **Print-Friendly Markdown**: A simple, clean format containing only the note content.
