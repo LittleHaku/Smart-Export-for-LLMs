@@ -176,13 +176,13 @@
 ```typescript
 // Approximate token calculation
 const estimateTokens = (text: string): number => {
-  // Rough approximation: 1 token ≈ 4 characters for English
-  return Math.ceil(text.length / 4);
+	// Rough approximation: 1 token ≈ 4 characters for English
+	return Math.ceil(text.length / 4);
 };
 
 // More accurate calculation using tiktoken library (future enhancement)
 const calculateTokensAccurate = async (text: string, model: string): Promise<number> => {
-  // Implementation with tiktoken for precise token counting
+	// Implementation with tiktoken for precise token counting
 };
 ```
 
@@ -190,19 +190,19 @@ const calculateTokensAccurate = async (text: string, model: string): Promise<num
 
 ```typescript
 interface CacheEntry {
-  key: string;
-  data: any;
-  timestamp: number;
-  ttl: number;
+	key: string;
+	data: any;
+	timestamp: number;
+	ttl: number;
 }
 
 class ExportCache {
-  private cache: Map<string, CacheEntry> = new Map();
+	private cache: Map<string, CacheEntry> = new Map();
 
-  get(key: string): any | null;
-  set(key: string, data: any, ttl?: number): void;
-  invalidate(pattern?: string): void;
-  cleanup(): void;
+	get(key: string): any | null;
+	set(key: string, data: any, ttl?: number): void;
+	invalidate(pattern?: string): void;
+	cleanup(): void;
 }
 ```
 
@@ -210,15 +210,15 @@ class ExportCache {
 
 ```typescript
 interface RelevanceFactors {
-  contentSimilarity: number; // TF-IDF similarity score
-  tagOverlap: number; // Shared tags coefficient
-  linkDensity: number; // Graph connectivity score
-  recencyBoost: number; // Recent activity multiplier
-  userFeedback: number; // Historical user selections
+	contentSimilarity: number; // TF-IDF similarity score
+	tagOverlap: number; // Shared tags coefficient
+	linkDensity: number; // Graph connectivity score
+	recencyBoost: number; // Recent activity multiplier
+	userFeedback: number; // Historical user selections
 }
 
 const calculateRelevance = (note: VaultContextNote, exportedContent: string[]): number => {
-  // Weighted combination of relevance factors
+	// Weighted combination of relevance factors
 };
 ```
 
