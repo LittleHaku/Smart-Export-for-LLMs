@@ -2,6 +2,10 @@ import { TFile } from "obsidian";
 import { ExportNode } from "../types";
 import { ObsidianAPI } from "../obsidian-api";
 
+/**
+ * Implements a Breadth-First Search (BFS) traversal engine to discover and structure
+ * linked notes from a starting root note.
+ */
 export class BFSTraversal {
 	private obsidianAPI: ObsidianAPI;
 	private contentDepth: number;
@@ -9,12 +13,23 @@ export class BFSTraversal {
 	private visited: Set<string> = new Set();
 	private cache: Map<string, ExportNode> = new Map();
 
+	/**
+	 * Creates an instance of the BFSTraversal engine.
+	 * @param {ObsidianAPI} obsidianAPI - An instance of the ObsidianAPI wrapper.
+	 * @param {number} contentDepth - The maximum depth to include full note content.
+	 * @param {number} titleDepth - The maximum depth to include note titles.
+	 */
 	constructor(obsidianAPI: ObsidianAPI, contentDepth: number, titleDepth: number) {
 		this.obsidianAPI = obsidianAPI;
 		this.contentDepth = contentDepth;
 		this.titleDepth = titleDepth;
 	}
 
+	/**
+	 * Traverses the note graph starting from a root note.
+	 * @param {string} rootNotePath - The path of the starting note.
+	 * @returns {Promise<ExportNode | null>} The root of the generated export tree, or null if the root note is not found.
+	 */
 	public async traverse(rootNotePath: string): Promise<ExportNode | null> {
 		const rootFile = this.obsidianAPI.getTFile(rootNotePath);
 		if (!rootFile) {
@@ -60,6 +75,14 @@ export class BFSTraversal {
 		return rootNode;
 	}
 
+	/**
+	 * Creates a new ExportNode for a given file.
+	 * It checks the cache first to avoid redundant processing.
+	 * @private
+	 * @param {TFile} file - The file to create a node for.
+	 * @param {number} depth - The depth of the file in the traversal.
+	 * @returns {Promise<ExportNode | null>} The created ExportNode or null.
+	 */
 	private async createExportNode(file: TFile, depth: number): Promise<ExportNode | null> {
 		const cacheKey = `${file.path}-${depth}`;
 		if (this.cache.has(cacheKey)) {
@@ -81,6 +104,12 @@ export class BFSTraversal {
 		return node;
 	}
 
+	/**
+	 * Recursively populates the `content` field of each node in the tree
+	 * based on whether its depth is within the `contentDepth`.
+	 * @private
+	 * @param {ExportNode} node - The starting node to process.
+	 */
 	private async updateNodeContent(node: ExportNode) {
 		if (node.includeContent) {
 			node.content = await this.obsidianAPI.getNoteContent(node.id);
