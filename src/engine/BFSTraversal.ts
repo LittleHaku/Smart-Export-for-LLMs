@@ -39,7 +39,7 @@ export class BFSTraversal {
 			if (!links) continue;
 
 			for (const link of links) {
-				const linkedFile = this.obsidianAPI.getTFile(link.link);
+				const linkedFile = this.obsidianAPI.resolveLink(link.link, file.path);
 				if (linkedFile && !this.visited.has(linkedFile.path)) {
 					this.visited.add(linkedFile.path);
 					const childNode = await this.createExportNode(linkedFile, depth + 1);
@@ -55,7 +55,7 @@ export class BFSTraversal {
 			}
 		}
 
-		this.updateNodeContent(rootNode);
+		await this.updateNodeContent(rootNode);
 
 		return rootNode;
 	}

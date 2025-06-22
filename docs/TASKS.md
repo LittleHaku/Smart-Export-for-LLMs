@@ -37,8 +37,8 @@
 - [x] Main export dialog component structure
 - [x] Root note picker with fuzzy search
 - [x] Dual depth control sliders with validation
-- [ ] Basic token counter implementation
-- [ ] Export to clipboard functionality
+- [x] Basic token counter implementation
+- [x] Export to clipboard functionality
 
 ### 1.4 XML Export System
 

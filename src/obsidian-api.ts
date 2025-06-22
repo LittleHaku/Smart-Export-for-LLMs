@@ -22,6 +22,10 @@ export class ObsidianAPI {
 		return this.app.metadataCache.getCache(file.path)?.links;
 	}
 
+	public resolveLink(link: string, sourcePath: string): TFile | null {
+		return this.app.metadataCache.getFirstLinkpathDest(link, sourcePath);
+	}
+
 	public getNoteTitle(file: TFile): string {
 		return file.basename;
 	}

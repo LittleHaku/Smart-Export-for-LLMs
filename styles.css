@@ -6,3 +6,25 @@ available in the app when your plugin is enabled.
 If your plugin does not need CSS, delete this file.
 
 */
+
+.smart-export-selected-file {
+	font-size: var(--font-ui-small);
+	color: var(--text-muted);
+	margin-top: -10px;
+	margin-bottom: 15px;
+	padding-left: 40px;
+}
+
+.smart-export-separator {
+	border: 0;
+	height: 1px;
+	background-color: var(--background-modifier-border);
+	margin: 20px 0;
+}
+
+.smart-export-token-count {
+	text-align: center;
+	font-size: var(--font-ui-small);
+	color: var(--text-muted);
+	margin-top: 10px;
+}

@@ -19,6 +19,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Created placeholder classes for Obsidian API integration and metadata extraction.
 - Implemented dual depth sliders for content and title depth with descriptive tooltips.
 - Added a root note picker with a fuzzy search UI to the export modal.
+- Implemented a basic token counter to estimate export size.
+- Added export to clipboard functionality with a clear call-to-action button.
 - Added a ribbon icon with a brain symbol to open the main export modal.
 - Created the basic structure for the main export modal.
 - Configured plugin metadata in `manifest.json`.
