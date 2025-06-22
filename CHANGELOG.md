@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Implemented XML Export System:
+  - The export functionality now generates a structured XML output instead of Markdown.
+  - The XML includes metadata for each note, such as path, depth, and modification date.
+  - Content is sanitized and wrapped in CDATA sections to ensure a well-formed output.
 - Implemented BFS Traversal Engine:
   - Breadth-first search algorithm for note traversal.
   - Wikilink parsing and extraction.

@@ -2,7 +2,9 @@ import { App, Modal, Setting, TFile, SliderComponent, Notice, debounce } from "o
 import { RootNoteSuggestModal } from "./RootNoteSuggestModal";
 import { BFSTraversal } from "../engine/BFSTraversal";
 import { ObsidianAPI } from "../obsidian-api";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { ExportNode } from "../types";
+import { XMLExporter } from "../engine/XMLExporter";
 
 /**
  * The main modal for configuring and triggering a smart export.
@@ -141,7 +143,9 @@ export class ExportModal extends Modal {
 			return null;
 		}
 
-		const output = this.generateOutput(exportTree);
+		const exporter = new XMLExporter();
+		const vaultPath = this.app.vault.getName();
+		const output = exporter.export(exportTree, vaultPath);
 		const tokenCount = this.estimateTokens(output);
 
 		return { output, tokenCount };
@@ -188,29 +192,6 @@ export class ExportModal extends Modal {
 			new Notice("Failed to generate export. See console for details.");
 			this.tokenCountEl.setText("Token count: Error");
 		}
-	}
-
-	/**
-	 * Recursively generates a markdown string from the export tree.
-	 * @private
-	 * @param {ExportNode} node - The current node to process.
-	 * @param {number} [depth=0] - The current depth in the tree, used for heading levels.
-	 * @returns {string} The formatted markdown string.
-	 */
-	private generateOutput(node: ExportNode, depth = 0): string {
-		let output = "";
-		const prefix = "#".repeat(depth + 1);
-		output += `${prefix} ${node.title}\n\n`;
-
-		if (node.content) {
-			output += `${node.content}\n\n`;
-		}
-
-		for (const child of node.children) {
-			output += this.generateOutput(child, depth + 1);
-		}
-
-		return output;
 	}
 
 	/**
