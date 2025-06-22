@@ -7,6 +7,13 @@ If your plugin does not need CSS, delete this file.
 
 */
 
+/* General styling for the Smart Export plugin modal */
+.smart-export-logo {
+	width: 50px;
+	height: 50px;
+}
+
+/* Styles for the element displaying the currently selected root note. */
 .smart-export-selected-file {
 	font-size: var(--font-ui-small);
 	color: var(--text-muted);
@@ -15,6 +22,7 @@ If your plugin does not need CSS, delete this file.
 	padding-left: 40px;
 }
 
+/* A horizontal rule used to visually separate sections within the modal. */
 .smart-export-separator {
 	border: 0;
 	height: 1px;
@@ -22,6 +30,7 @@ If your plugin does not need CSS, delete this file.
 	margin: 20px 0;
 }
 
+/* Styles for the element displaying the estimated token count. */
 .smart-export-token-count {
 	text-align: center;
 	font-size: var(--font-ui-small);

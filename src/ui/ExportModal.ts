@@ -4,18 +4,32 @@ import { BFSTraversal } from "../engine/BFSTraversal";
 import { ObsidianAPI } from "../obsidian-api";
 import { ExportNode } from "../types";
 
+/**
+ * The main modal for configuring and triggering a smart export.
+ * It allows users to select a root note, adjust traversal depth,
+ * and export the resulting note tree to the clipboard.
+ */
 export class ExportModal extends Modal {
+	/** The currently selected file to be used as the root of the export. */
 	private selectedFile: TFile | null = null;
+	/** The HTML element that displays the name of the selected file. */
 	private selectedFileEl: HTMLElement;
+	/** The depth for including full note content. */
 	private contentDepth = 3;
+	/** The depth for including only note titles. */
 	private titleDepth = 6;
+	/** The HTML element that displays the estimated token count. */
 	private tokenCountEl: HTMLElement;
+	/** A debounced function to update the token count dynamically. */
 	private debouncedTokenUpdate = debounce(this.calculateAndDisplayTokens, 500, true);
 
 	constructor(app: App) {
 		super(app);
 	}
 
+	/**
+	 * Called when the modal is opened. Sets up the UI components.
+	 */
 	onOpen() {
 		const { contentEl } = this;
 		contentEl.empty();
@@ -108,6 +122,11 @@ export class ExportModal extends Modal {
 		});
 	}
 
+	/**
+	 * Retrieves the export data by traversing the note graph.
+	 * @private
+	 * @returns {Promise<{ output: string, tokenCount: number } | null>} An object containing the formatted output and token count, or null on failure.
+	 */
 	private async getExportData(): Promise<{ output: string; tokenCount: number } | null> {
 		if (!this.selectedFile) {
 			return null;
@@ -128,6 +147,10 @@ export class ExportModal extends Modal {
 		return { output, tokenCount };
 	}
 
+	/**
+	 * Calculates the token count for the current settings and updates the UI.
+	 * @private
+	 */
 	private async calculateAndDisplayTokens() {
 		if (!this.selectedFile) {
 			this.tokenCountEl.setText("Token count: N/A");
@@ -144,6 +167,10 @@ export class ExportModal extends Modal {
 		}
 	}
 
+	/**
+	 * Handles the main export action when the user clicks the export button.
+	 * @private
+	 */
 	private async onExport() {
 		if (!this.selectedFile) {
 			new Notice("Please select a root note first.");
@@ -163,6 +190,13 @@ export class ExportModal extends Modal {
 		}
 	}
 
+	/**
+	 * Recursively generates a markdown string from the export tree.
+	 * @private
+	 * @param {ExportNode} node - The current node to process.
+	 * @param {number} [depth=0] - The current depth in the tree, used for heading levels.
+	 * @returns {string} The formatted markdown string.
+	 */
 	private generateOutput(node: ExportNode, depth = 0): string {
 		let output = "";
 		const prefix = "#".repeat(depth + 1);
@@ -179,11 +213,22 @@ export class ExportModal extends Modal {
 		return output;
 	}
 
+	/**
+	 * Estimates the number of tokens in a given string.
+	 * A rough approximation where 1 token is about 4 characters.
+	 * @private
+	 * @param {string} text - The text to estimate tokens for.
+	 * @returns {number} The estimated token count.
+	 */
 	private estimateTokens(text: string): number {
 		// Rough approximation: 1 token ≈ 4 characters for English
 		return Math.ceil(text.length / 4);
 	}
 
+	/**
+	 * Updates the UI to reflect the currently selected file.
+	 * @private
+	 */
 	private updateSelectedFile() {
 		if (this.selectedFile) {
 			this.selectedFileEl.setText(`Selected file: ${this.selectedFile.basename}`);
@@ -193,6 +238,9 @@ export class ExportModal extends Modal {
 		this.debouncedTokenUpdate();
 	}
 
+	/**
+	 * Called when the modal is closed. Clears the content.
+	 */
 	onClose() {
 		const { contentEl } = this;
 		contentEl.empty();
