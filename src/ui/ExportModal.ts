@@ -5,6 +5,8 @@ import { ObsidianAPI } from "../obsidian-api";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { ExportNode } from "../types";
 import { XMLExporter } from "../engine/XMLExporter";
+import { LlmMarkdownExporter } from "../engine/LlmMarkdownExporter";
+import { PrintFriendlyMarkdownExporter } from "../engine/PrintFriendlyMarkdownExporter";
 
 /**
  * The main modal for configuring and triggering a smart export.
@@ -20,6 +22,8 @@ export class ExportModal extends Modal {
 	private contentDepth = 3;
 	/** The depth for including only note titles. */
 	private titleDepth = 6;
+	/** The selected export format. */
+	private exportFormat: "xml" | "llm-markdown" | "print-friendly-markdown" = "xml";
 	/** The HTML element that displays the estimated token count. */
 	private tokenCountEl: HTMLElement;
 	/** A debounced function to update the token count dynamically. */
@@ -107,6 +111,21 @@ export class ExportModal extends Modal {
 		contentEl.createEl("hr", { cls: "smart-export-separator" });
 
 		new Setting(contentEl)
+			.setName("Export Format")
+			.setDesc("Choose the output format for the export.")
+			.addDropdown((dropdown) => {
+				dropdown
+					.addOption("xml", "XML")
+					.addOption("llm-markdown", "LLM Markdown")
+					.addOption("print-friendly-markdown", "Print-Friendly Markdown")
+					.setValue(this.exportFormat)
+					.onChange((value: "xml" | "llm-markdown" | "print-friendly-markdown") => {
+						this.exportFormat = value;
+						this.debouncedTokenUpdate();
+					});
+			});
+
+		new Setting(contentEl)
 			.setName("Export")
 			.setDesc("Generate the export and copy it to your clipboard.")
 			.addButton((button) => {
@@ -133,22 +152,37 @@ export class ExportModal extends Modal {
 		if (!this.selectedFile) {
 			return null;
 		}
+		try {
+			const obsidianAPI = new ObsidianAPI(this.app);
+			const traversal = new BFSTraversal(obsidianAPI, this.contentDepth, this.titleDepth);
 
-		const obsidianAPI = new ObsidianAPI(this.app);
-		const traversal = new BFSTraversal(obsidianAPI, this.contentDepth, this.titleDepth);
+			const exportTree = await traversal.traverse(this.selectedFile.path);
 
-		const exportTree = await traversal.traverse(this.selectedFile.path);
+			if (!exportTree) {
+				return null;
+			}
+			let output: string;
+			const vaultPath = this.app.vault.getName();
 
-		if (!exportTree) {
+			switch (this.exportFormat) {
+				case "xml":
+					output = new XMLExporter().export(exportTree, vaultPath);
+					break;
+				case "llm-markdown":
+					output = new LlmMarkdownExporter().export(exportTree, vaultPath);
+					break;
+				case "print-friendly-markdown":
+					output = new PrintFriendlyMarkdownExporter().export(exportTree);
+					break;
+			}
+			const tokenCount = this.estimateTokens(output);
+
+			return { output, tokenCount };
+		} catch (error) {
+			console.error("Smart Export failed:", error);
+			new Notice("Failed to generate export. See console for details.");
 			return null;
 		}
-
-		const exporter = new XMLExporter();
-		const vaultPath = this.app.vault.getName();
-		const output = exporter.export(exportTree, vaultPath);
-		const tokenCount = this.estimateTokens(output);
-
-		return { output, tokenCount };
 	}
 
 	/**
@@ -189,7 +223,6 @@ export class ExportModal extends Modal {
 			await navigator.clipboard.writeText(data.output);
 			new Notice("Exported content copied to clipboard!");
 		} else {
-			new Notice("Failed to generate export. See console for details.");
 			this.tokenCountEl.setText("Token count: Error");
 		}
 	}

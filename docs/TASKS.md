@@ -45,8 +45,8 @@
 - [x] XML structure design and schema
 - [x] Content sanitization for XML output
 - [x] Metadata inclusion handling
-- [ ] Template variable substitution
-- [ ] Export validation and error handling
+- [x] Template variable substitution
+- [x] Export validation and error handling
 
 ---
 
@@ -82,7 +82,10 @@
 
 ### 2.4 Enhanced Export Options
 
-- [ ] Multiple output formats (XML, Markdown, Plain Text)
+- [x] Multiple output formats
+  - [x] XML
+  - [x] LLM-Optimized Markdown
+  - [x] Print-Friendly Markdown
 - [ ] File export functionality
 - [ ] New note creation with exports
 - [ ] Batch export capabilities

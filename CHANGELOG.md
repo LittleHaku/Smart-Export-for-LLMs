@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Split Markdown export into two formats:
+  - **LLM-Optimized Markdown**: A detailed format with metadata and structure, similar to the XML export.
+  - **Print-Friendly Markdown**: A simple, clean format containing only the note content.
+- Added a dropdown menu to select the export format (XML or Markdown).
+- Implemented a `MarkdownExporter` for plain text export.
+- Improved error handling with a `try...catch` block around the export process.
 - Implemented XML Export System:
   - The export functionality now generates a structured XML output instead of Markdown.
   - The XML includes metadata for each note, such as path, depth, and modification date.
