@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Implemented BFS Traversal Engine:
+  - Breadth-first search algorithm for note traversal.
+  - Wikilink parsing and extraction.
+  - Depth-based controls for content and title-only inclusion.
+  - Circular reference detection to prevent infinite loops.
+  - Caching layer to optimize performance for repeated traversals.
 - Implemented core data structures (`ExportNode`, `VaultContext`, `ExportConfiguration`).
 - Created placeholder classes for Obsidian API integration and metadata extraction.
 - Implemented dual depth sliders for content and title depth with descriptive tooltips.

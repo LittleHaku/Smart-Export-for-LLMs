@@ -1,4 +1,4 @@
-import { App } from "obsidian";
+import { App, TFile, LinkCache } from "obsidian";
 
 /**
  * A class to abstract interactions with the Obsidian API.
@@ -8,6 +8,30 @@ export class ObsidianAPI {
 
 	constructor(app: App) {
 		this.app = app;
+	}
+
+	public getTFile(path: string): TFile | null {
+		const file = this.app.vault.getAbstractFileByPath(path);
+		if (file instanceof TFile) {
+			return file;
+		}
+		return null;
+	}
+
+	public getLinksForFile(file: TFile): LinkCache[] | undefined {
+		return this.app.metadataCache.getCache(file.path)?.links;
+	}
+
+	public getNoteTitle(file: TFile): string {
+		return file.basename;
+	}
+
+	public async getNoteContent(path: string): Promise<string> {
+		const file = this.getTFile(path);
+		if (!file) {
+			return "";
+		}
+		return this.app.vault.cachedRead(file);
 	}
 
 	// Future methods for API interaction will go here.
