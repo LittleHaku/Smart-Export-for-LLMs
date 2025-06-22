@@ -1,7 +1,7 @@
 {
-	"name": "smart-export-for-llms",
+	"name": "obsidian-llm-export-plugin",
 	"version": "0.1.0",
-	"description": "An Obsidian plugin to export notes for LLMs",
+	"description": "Intelligently export interconnected Obsidian notes for LLM consumption with configurable depth and vault context",
 	"main": "main.js",
 	"scripts": {
 		"dev": "node esbuild.config.mjs",
@@ -13,8 +13,15 @@
 		"format:check": "prettier --check '**/*.{js,ts,tsx,md}'",
 		"prepare": "husky"
 	},
-	"keywords": [],
-	"author": "",
+	"keywords": [
+		"obsidian",
+		"plugin",
+		"llm",
+		"export",
+		"ai",
+		"notes"
+	],
+	"author": "Iván Sotillo",
 	"license": "MIT",
 	"devDependencies": {
 		"@types/node": "^16.11.6",
