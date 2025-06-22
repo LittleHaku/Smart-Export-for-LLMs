@@ -1,9 +1,11 @@
-import { App, Modal, Setting, TFile } from "obsidian";
+import { App, Modal, Setting, TFile, SliderComponent } from "obsidian";
 import { RootNoteSuggestModal } from "./RootNoteSuggestModal";
 
 export class ExportModal extends Modal {
 	private selectedFile: TFile | null = null;
 	private selectedFileEl: HTMLElement;
+	private contentDepth = 3;
+	private titleDepth = 6;
 
 	constructor(app: App) {
 		super(app);
@@ -36,6 +38,45 @@ export class ExportModal extends Modal {
 			this.selectedFile = activeFile;
 			this.updateSelectedFile();
 		}
+
+		let contentSlider: SliderComponent;
+		let titleSlider: SliderComponent;
+
+		new Setting(contentEl)
+			.setName("Content Depth")
+			.setDesc("Levels of linked notes to include the full content for.")
+			.addSlider((slider) => {
+				contentSlider = slider;
+				slider
+					.setLimits(1, 20, 1)
+					.setValue(this.contentDepth)
+					.setDynamicTooltip()
+					.onChange((value) => {
+						this.contentDepth = value;
+						if (this.titleDepth < this.contentDepth) {
+							this.titleDepth = this.contentDepth;
+							titleSlider.setValue(this.titleDepth);
+						}
+					});
+			});
+
+		new Setting(contentEl)
+			.setName("Title Depth")
+			.setDesc("Levels of linked notes to include only the title for.")
+			.addSlider((slider) => {
+				titleSlider = slider;
+				slider
+					.setLimits(1, 30, 1)
+					.setValue(this.titleDepth)
+					.setDynamicTooltip()
+					.onChange((value) => {
+						this.titleDepth = value;
+						if (this.titleDepth < this.contentDepth) {
+							this.contentDepth = this.titleDepth;
+							if (contentSlider) contentSlider.setValue(this.contentDepth);
+						}
+					});
+			});
 	}
 
 	private updateSelectedFile() {

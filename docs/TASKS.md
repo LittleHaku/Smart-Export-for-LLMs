@@ -36,7 +36,7 @@
 
 - [x] Main export dialog component structure
 - [x] Root note picker with fuzzy search
-- [ ] Dual depth control sliders with validation
+- [x] Dual depth control sliders with validation
 - [ ] Basic token counter implementation
 - [ ] Export to clipboard functionality
 
