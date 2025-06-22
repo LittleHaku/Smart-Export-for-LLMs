@@ -39,11 +39,25 @@ export class ExportModal extends Modal {
 	onOpen() {
 		const { contentEl } = this;
 		contentEl.empty();
-		contentEl.createEl("h1", { text: "Smart Export" });
 
-		new Setting(contentEl)
-			.setName("Root Note")
-			.setDesc("Select the root note for the export.")
+		// Header section with title and description
+		const headerEl = contentEl.createDiv({ cls: "smart-export-header" });
+		headerEl.createEl("h1", {
+			text: "Smart Export for LLMs",
+			cls: "smart-export-title",
+		});
+		headerEl.createEl("p", {
+			text: "Intelligently export interconnected notes using breadth-first traversal of wikilinks. Perfect for feeding context to Large Language Models.",
+			cls: "smart-export-description",
+		});
+
+		// Root note selection section
+		const rootSection = contentEl.createDiv({ cls: "smart-export-section" });
+		rootSection.createEl("h3", { text: "📝 Root Note", cls: "smart-export-section-title" });
+
+		new Setting(rootSection)
+			.setName("Starting Point")
+			.setDesc("Choose the note to start traversing from. Default: current active note")
 			.addButton((button) => {
 				button.setButtonText("Select").onClick(() => {
 					new RootNoteSuggestModal(this.app, (file: TFile) => {
@@ -53,12 +67,12 @@ export class ExportModal extends Modal {
 				});
 			});
 
-		this.selectedFileEl = contentEl.createEl("div", {
+		this.selectedFileEl = rootSection.createEl("div", {
 			text: "No file selected.",
 			cls: "smart-export-selected-file",
 		});
-		contentEl.createEl("hr", { cls: "smart-export-separator" });
 
+		// Auto-select active file if available
 		const activeFile = this.app.workspace.getActiveFile();
 		if (activeFile) {
 			this.selectedFile = activeFile;
@@ -67,12 +81,23 @@ export class ExportModal extends Modal {
 			this.updateSelectedFile();
 		}
 
+		// Depth configuration section
+		const depthSection = contentEl.createDiv({ cls: "smart-export-section" });
+		depthSection.createEl("h3", { text: "🌊 Traversal Depth", cls: "smart-export-section-title" });
+
+		const depthInfo = depthSection.createDiv({ cls: "smart-export-info-box" });
+		depthInfo.createEl("span", { text: "💡 " });
+		depthInfo.createEl("strong", { text: "How it works: " });
+		depthInfo.createEl("span", {
+			text: "Content Depth includes full note text, Title Depth adds linked note titles only. Title Depth must be ≥ Content Depth.",
+		});
+
 		let contentSlider: SliderComponent;
 		let titleSlider: SliderComponent;
 
-		new Setting(contentEl)
+		new Setting(depthSection)
 			.setName("Content Depth")
-			.setDesc("Levels of linked notes to include the full content for.")
+			.setDesc("📄 Levels of linked notes to include full content (text, images, etc.)")
 			.addSlider((slider) => {
 				contentSlider = slider;
 				slider
@@ -89,9 +114,9 @@ export class ExportModal extends Modal {
 					});
 			});
 
-		new Setting(contentEl)
+		new Setting(depthSection)
 			.setName("Title Depth")
-			.setDesc("Levels of linked notes to include only the title for.")
+			.setDesc("🏷️ Additional levels to include titles only (for context and navigation)")
 			.addSlider((slider) => {
 				titleSlider = slider;
 				slider
@@ -108,16 +133,18 @@ export class ExportModal extends Modal {
 					});
 			});
 
-		contentEl.createEl("hr", { cls: "smart-export-separator" });
+		// Export configuration section
+		const exportSection = contentEl.createDiv({ cls: "smart-export-section" });
+		exportSection.createEl("h3", { text: "📤 Export Settings", cls: "smart-export-section-title" });
 
-		new Setting(contentEl)
-			.setName("Export Format")
-			.setDesc("Choose the output format for the export.")
+		new Setting(exportSection)
+			.setName("Output Format")
+			.setDesc("Choose the format optimized for your workflow")
 			.addDropdown((dropdown) => {
 				dropdown
-					.addOption("xml", "XML")
-					.addOption("llm-markdown", "LLM Markdown")
-					.addOption("print-friendly-markdown", "Print-Friendly Markdown")
+					.addOption("xml", "📋 XML - Structured format with metadata")
+					.addOption("llm-markdown", "🤖 LLM Markdown - Optimized for AI consumption")
+					.addOption("print-friendly-markdown", "🖨️ Print-Friendly - Clean, readable format")
 					.setValue(this.exportFormat)
 					.onChange((value: "xml" | "llm-markdown" | "print-friendly-markdown") => {
 						this.exportFormat = value;
@@ -125,22 +152,30 @@ export class ExportModal extends Modal {
 					});
 			});
 
-		new Setting(contentEl)
-			.setName("Export")
-			.setDesc("Generate the export and copy it to your clipboard.")
+		// Token count and export section
+		const exportActionSection = contentEl.createDiv({ cls: "smart-export-action-section" });
+
+		this.tokenCountEl = exportActionSection.createEl("div", {
+			text: "Token count: N/A",
+			cls: "smart-export-token-count",
+		});
+
+		const tokenInfo = exportActionSection.createDiv({ cls: "smart-export-token-info" });
+		tokenInfo.createEl("span", {
+			text: "📊 Token estimates help you stay within LLM context limits (GPT-4: ~128k, Claude: ~200k)",
+		});
+
+		new Setting(exportActionSection)
+			.setName("Ready to Export?")
+			.setDesc("Generate your smart export and copy it to clipboard")
 			.addButton((button) => {
 				button
-					.setButtonText("Export to Clipboard")
+					.setButtonText("🚀 Export to Clipboard")
 					.setCta()
 					.onClick(() => {
 						this.onExport();
 					});
 			});
-
-		this.tokenCountEl = contentEl.createEl("div", {
-			text: "Token count: N/A",
-			cls: "smart-export-token-count",
-		});
 	}
 
 	/**
@@ -195,13 +230,25 @@ export class ExportModal extends Modal {
 			return;
 		}
 
-		this.tokenCountEl.setText("Token count: calculating...");
+		this.tokenCountEl.setText("🔄 Calculating tokens...");
 		const data = await this.getExportData();
 
 		if (data) {
-			this.tokenCountEl.setText(`Token count: ~${data.tokenCount}`);
+			const tokenCount = data.tokenCount;
+			let tokenText = `📊 ~${tokenCount.toLocaleString()} tokens`;
+
+			// Add context warnings for common LLMs
+			if (tokenCount > 200000) {
+				tokenText += " ⚠️ Exceeds most LLM limits";
+			} else if (tokenCount > 128000) {
+				tokenText += " ⚠️ May exceed GPT-4 limit";
+			} else if (tokenCount > 100000) {
+				tokenText += " ⚡ Large export";
+			}
+
+			this.tokenCountEl.setText(tokenText);
 		} else {
-			this.tokenCountEl.setText("Token count: Error");
+			this.tokenCountEl.setText("❌ Token count: Error");
 		}
 	}
 
@@ -215,15 +262,27 @@ export class ExportModal extends Modal {
 			return;
 		}
 
-		this.tokenCountEl.setText("Token count: exporting...");
+		this.tokenCountEl.setText("🚀 Exporting...");
 		const data = await this.getExportData();
 
 		if (data) {
-			this.tokenCountEl.setText(`Token count: ~${data.tokenCount}`);
+			const tokenCount = data.tokenCount;
+			let tokenText = `📊 ~${tokenCount.toLocaleString()} tokens`;
+
+			// Add context warnings for common LLMs
+			if (tokenCount > 200000) {
+				tokenText += " ⚠️ Exceeds most LLM limits";
+			} else if (tokenCount > 128000) {
+				tokenText += " ⚠️ May exceed GPT-4 limit";
+			} else if (tokenCount > 100000) {
+				tokenText += " ⚡ Large export";
+			}
+
+			this.tokenCountEl.setText(tokenText);
 			await navigator.clipboard.writeText(data.output);
-			new Notice("Exported content copied to clipboard!");
+			new Notice("✅ Export copied to clipboard! Ready to paste into your LLM.");
 		} else {
-			this.tokenCountEl.setText("Token count: Error");
+			this.tokenCountEl.setText("❌ Export failed");
 		}
 	}
 
@@ -245,9 +304,9 @@ export class ExportModal extends Modal {
 	 */
 	private updateSelectedFile() {
 		if (this.selectedFile) {
-			this.selectedFileEl.setText(`Selected file: ${this.selectedFile.basename}`);
+			this.selectedFileEl.setText(`✅ Selected: ${this.selectedFile.basename}`);
 		} else {
-			this.selectedFileEl.setText("No file selected.");
+			this.selectedFileEl.setText("❌ No file selected");
 		}
 		this.debouncedTokenUpdate();
 	}

@@ -7,33 +7,175 @@ If your plugin does not need CSS, delete this file.
 
 */
 
-/* General styling for the Smart Export plugin modal */
-.smart-export-logo {
-	width: 50px;
-	height: 50px;
-}
+/*
+Smart Export for LLMs - Plugin Styles
+Modern, clean styling for the export modal interface
+*/
 
-/* Styles for the element displaying the currently selected root note. */
-.smart-export-selected-file {
-	font-size: var(--font-ui-small);
-	color: var(--text-muted);
-	margin-top: -10px;
-	margin-bottom: 15px;
-	padding-left: 40px;
-}
-
-/* A horizontal rule used to visually separate sections within the modal. */
-.smart-export-separator {
-	border: 0;
-	height: 1px;
-	background-color: var(--background-modifier-border);
-	margin: 20px 0;
-}
-
-/* Styles for the element displaying the estimated token count. */
-.smart-export-token-count {
+/* Header Section */
+.smart-export-header {
 	text-align: center;
-	font-size: var(--font-ui-small);
+	padding: 0 0 24px 0;
+	border-bottom: 1px solid var(--background-modifier-border);
+	margin-bottom: 24px;
+}
+
+.smart-export-title {
+	color: var(--text-normal);
+	margin: 0 0 8px 0;
+	font-size: 1.5em;
+	font-weight: 600;
+}
+
+.smart-export-description {
 	color: var(--text-muted);
-	margin-top: 10px;
+	margin: 0;
+	font-size: var(--font-ui-medium);
+	line-height: 1.4;
+	max-width: 500px;
+	margin: 0 auto;
+}
+
+/* Section Organization */
+.smart-export-section {
+	margin-bottom: 32px;
+	padding: 16px;
+	background: var(--background-primary-alt);
+	border-radius: 8px;
+	border: 1px solid var(--background-modifier-border);
+}
+
+.smart-export-section-title {
+	margin: 0 0 16px 0;
+	color: var(--text-normal);
+	font-size: 1.1em;
+	font-weight: 500;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+/* Info Boxes */
+.smart-export-info-box {
+	background: var(--background-secondary);
+	padding: 12px;
+	border-radius: 6px;
+	margin: 0 0 16px 0;
+	font-size: var(--font-ui-small);
+	line-height: 1.4;
+	border-left: 3px solid var(--interactive-accent);
+}
+
+.smart-export-info-box strong {
+	color: var(--text-normal);
+}
+
+/* Selected File Display */
+.smart-export-selected-file {
+	font-size: var(--font-ui-medium);
+	color: var(--text-muted);
+	margin: 8px 0 0 0;
+	padding: 8px 12px;
+	background: var(--background-secondary);
+	border-radius: 4px;
+	border: 1px solid var(--background-modifier-border);
+}
+
+/* Export Action Section */
+.smart-export-action-section {
+	background: var(--background-primary-alt);
+	padding: 20px;
+	border-radius: 8px;
+	border: 1px solid var(--background-modifier-border);
+	text-align: center;
+}
+
+/* Token Count Display */
+.smart-export-token-count {
+	font-size: var(--font-ui-large);
+	font-weight: 500;
+	color: var(--text-normal);
+	margin: 0 0 12px 0;
+	padding: 12px;
+	background: var(--background-secondary);
+	border-radius: 6px;
+	border: 1px solid var(--background-modifier-border);
+}
+
+.smart-export-token-info {
+	color: var(--text-muted);
+	font-size: var(--font-ui-small);
+	margin: 0 0 16px 0;
+	line-height: 1.4;
+}
+
+/* Setting Enhancements */
+.setting-item {
+	border: none;
+	padding: 12px 0;
+}
+
+.setting-item:not(:last-child) {
+	border-bottom: 1px solid var(--background-modifier-border-hover);
+}
+
+.setting-item-name {
+	font-weight: 500;
+	color: var(--text-normal);
+}
+
+.setting-item-description {
+	color: var(--text-muted);
+	margin-top: 4px;
+}
+
+/* Dropdown Improvements */
+.dropdown select {
+	background: var(--background-primary);
+	border: 1px solid var(--background-modifier-border);
+	border-radius: 4px;
+	padding: 6px 8px;
+	color: var(--text-normal);
+}
+
+/* Button Improvements */
+.mod-cta {
+	background: var(--interactive-accent) !important;
+	color: var(--text-on-accent) !important;
+	border: none !important;
+	padding: 10px 20px !important;
+	border-radius: 6px !important;
+	font-weight: 500 !important;
+	font-size: var(--font-ui-medium) !important;
+	transition: background-color 0.2s ease !important;
+}
+
+.mod-cta:hover {
+	background: var(--interactive-accent-hover) !important;
+}
+
+/* Slider Improvements */
+.slider {
+	margin: 8px 0;
+}
+
+/* Remove old separator styling */
+.smart-export-separator {
+	display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+	.smart-export-section {
+		margin-bottom: 24px;
+		padding: 12px;
+	}
+
+	.smart-export-title {
+		font-size: 1.3em;
+	}
+
+	.smart-export-description {
+		font-size: var(--font-ui-small);
+	}
 }
