@@ -1,4 +1,5 @@
-import { App, Modal, Plugin, PluginSettingTab, Setting } from "obsidian";
+import { App, Plugin, PluginSettingTab, Setting } from "obsidian";
+import { ExportModal } from "./ui/ExportModal";
 
 // Remember to rename these classes and interfaces!
 
@@ -42,25 +43,6 @@ export default class SmartExportPlugin extends Plugin {
 
 	async saveSettings() {
 		await this.saveData(this.settings);
-	}
-}
-
-class ExportModal extends Modal {
-	constructor(app: App) {
-		super(app);
-	}
-
-	onOpen() {
-		const { contentEl } = this;
-		contentEl.createEl("h1", { text: "Smart Export" });
-		contentEl.createEl("p", {
-			text: "This is where the main UI for the Smart Export plugin will be.",
-		});
-	}
-
-	onClose() {
-		const { contentEl } = this;
-		contentEl.empty();
 	}
 }
 

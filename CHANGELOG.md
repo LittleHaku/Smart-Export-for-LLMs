@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Added a root note picker with a fuzzy search UI to the export modal.
 - Added a ribbon icon with a brain symbol to open the main export modal.
 - Created the basic structure for the main export modal.
 - Configured plugin metadata in `manifest.json`.

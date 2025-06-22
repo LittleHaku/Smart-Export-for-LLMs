@@ -35,7 +35,7 @@
 ### 1.3 Basic UI Framework
 
 - [x] Main export dialog component structure
-- [ ] Root note picker with fuzzy search
+- [x] Root note picker with fuzzy search
 - [ ] Dual depth control sliders with validation
 - [ ] Basic token counter implementation
 - [ ] Export to clipboard functionality
