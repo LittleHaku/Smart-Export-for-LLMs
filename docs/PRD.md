@@ -160,6 +160,23 @@ Since Obsidian plugins are difficult to monetize directly, focus on community-dr
 
 ### **📤 Output Options**
 
+- **Export Destinations**:
+  - **Copy to Clipboard**: Formatted for immediate LLM pasting
+  - **File Export**: Save as `.xml`, `.md`, or `.txt` with configurable options:
+    - **File Location**: Choose between:
+      - Current folder
+      - Dedicated exports folder
+      - Custom location
+    - **File Naming**: Options for:
+      - `[root-note]-export-[timestamp]`
+      - `llm-export-[timestamp]`
+      - Custom name template
+    - **File Format**: Matching the selected export format:
+      - `.xml` for XML exports
+      - `.md` for Markdown exports
+      - `.txt` for plain text exports
+    - **Overwrite Protection**: Prompt if file exists
+  - **New Note Creation**: Create "LLM Export - [timestamp]" note
 - **Template System**
   - **Connection Discovery**: "Analyze these notes and suggest connections to other notes in my vault..."
   - **Knowledge Gap Analysis**: "Based on these notes and my vault structure, identify potential knowledge gaps..."
@@ -167,10 +184,6 @@ Since Obsidian plugins are difficult to monetize directly, focus on community-dr
   - **Research Assistant**: "Use these notes as reference material for..."
   - **Creative Writing**: "Draw inspiration from these connected ideas..."
   - **Custom Templates**: User-defined prompt templates with variables
-- Generate:
-  - **Copy to Clipboard**: Formatted for immediate LLM pasting
-  - **New Note Creation**: Create "LLM Export - [timestamp]" note
-  - **File Export**: Save as .xml, .txt, or .md with metadata
 
 ---
 

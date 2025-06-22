@@ -100,6 +100,23 @@
   - [x] LLM-Optimized Markdown
   - [x] Print-Friendly Markdown
 - [ ] File export functionality
+  - [ ] File location selection:
+    - [ ] Current folder support
+    - [ ] Dedicated exports folder creation and management
+    - [ ] Custom location picker
+  - [ ] File naming system:
+    - [ ] Default naming patterns implementation
+    - [ ] Custom name template support
+    - [ ] Timestamp formatting options
+  - [ ] Format-specific extensions:
+    - [ ] XML export with `.xml` extension
+    - [ ] Markdown export with `.md` extension
+    - [ ] Plain text export with `.txt` extension
+  - [ ] File system integration:
+    - [ ] File existence checks
+    - [ ] Overwrite protection dialog
+    - [ ] Error handling for write operations
+  - [ ] Progress indicators and success/failure notifications
 - [ ] New note creation with exports
 - [ ] Batch export capabilities
 - [ ] Export logging and analytics
