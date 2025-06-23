@@ -11,7 +11,6 @@ export class BFSTraversal {
 	private contentDepth: number;
 	private titleDepth: number;
 	private visited: Set<string> = new Set();
-	private cache: Map<string, ExportNode> = new Map();
 	private missingNotes: Set<string> = new Set();
 
 	/**
@@ -43,7 +42,6 @@ export class BFSTraversal {
 		// Clear missing notes from any previous traversal
 		this.missingNotes.clear();
 		this.visited.clear();
-		this.cache.clear();
 
 		const rootFile = this.obsidianAPI.getTFile(rootNotePath);
 		if (!rootFile) {
@@ -52,8 +50,7 @@ export class BFSTraversal {
 		}
 
 		const queue: { file: TFile; depth: number; parent: ExportNode }[] = [];
-		const rootNode = await this.createExportNode(rootFile, 0);
-		if (!rootNode) return null;
+		const rootNode = this.createExportNode(rootFile, 0);
 
 		this.visited.add(rootFile.path);
 		queue.push({ file: rootFile, depth: 0, parent: rootNode });
@@ -71,15 +68,13 @@ export class BFSTraversal {
 				const linkedFile = this.obsidianAPI.resolveLink(link.link, file.path);
 				if (linkedFile && !this.visited.has(linkedFile.path)) {
 					this.visited.add(linkedFile.path);
-					const childNode = await this.createExportNode(linkedFile, depth + 1);
-					if (childNode) {
-						parent.children.push(childNode);
-						queue.push({
-							file: linkedFile,
-							depth: depth + 1,
-							parent: childNode,
-						});
-					}
+					const childNode = this.createExportNode(linkedFile, depth + 1);
+					parent.children.push(childNode);
+					queue.push({
+						file: linkedFile,
+						depth: depth + 1,
+						parent: childNode,
+					});
 				} else if (!linkedFile) {
 					// Track missing notes (links that couldn't be resolved)
 					this.missingNotes.add(link.link);
@@ -94,18 +89,12 @@ export class BFSTraversal {
 
 	/**
 	 * Creates a new ExportNode for a given file.
-	 * It checks the cache first to avoid redundant processing.
 	 * @private
 	 * @param {TFile} file - The file to create a node for.
 	 * @param {number} depth - The depth of the file in the traversal.
-	 * @returns {Promise<ExportNode | null>} The created ExportNode or null.
+	 * @returns {ExportNode} The created ExportNode.
 	 */
-	private async createExportNode(file: TFile, depth: number): Promise<ExportNode | null> {
-		const cacheKey = `${file.path}-${depth}`;
-		if (this.cache.has(cacheKey)) {
-			return this.cache.get(cacheKey)!;
-		}
-
+	private createExportNode(file: TFile, depth: number): ExportNode {
 		const title = this.obsidianAPI.getNoteTitle(file);
 		const node: ExportNode = {
 			id: file.path,
@@ -117,7 +106,6 @@ export class BFSTraversal {
 			lastModified: new Date(file.stat.mtime),
 		};
 
-		this.cache.set(cacheKey, node);
 		return node;
 	}
 

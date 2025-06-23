@@ -223,7 +223,6 @@ Vault Context Algorithm:
 
 ### Performance Considerations
 
-- **Caching**: Store traversal results and vault context for recently exported note trees
 - **Incremental Loading**: Load note content and vault context on-demand in preview
 - **Background Processing**: Run BFS traversal and vault analysis in web worker
 - **Memory Management**: Limit concurrent note loading and context processing
@@ -439,7 +438,6 @@ Created: 2024-04-02 23:04
 **Advanced Options**
 
 - BFS traversal limits (max notes, timeout)
-- Caching preferences
 - Custom XML/template formatting
 - Smart context algorithm parameters
 

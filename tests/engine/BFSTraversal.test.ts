@@ -166,4 +166,36 @@ describe("BFSTraversal", () => {
 		expect(missingNotes).toContain("missing2");
 		expect(missingNotes.length).toBe(2);
 	});
+
+	it("should properly handle child node creation and queue management", async () => {
+		// Create a more complex structure to ensure child nodes are properly created
+		// and added to both parent.children and the processing queue
+
+		mockFiles["parent.md"] = createMockTFile("parent.md", "parent");
+		mockFiles["child1.md"] = createMockTFile("child1.md", "child1");
+		mockFiles["child2.md"] = createMockTFile("child2.md", "child2");
+		mockFiles["grandchild.md"] = createMockTFile("grandchild.md", "grandchild");
+
+		mockFileContents["parent.md"] = "[[child1]] [[child2]]";
+		mockFileContents["child1.md"] = "[[grandchild]]";
+		mockFileContents["child2.md"] = "";
+		mockFileContents["grandchild.md"] = "";
+
+		mockFileLinks["parent.md"] = [createLink("child1"), createLink("child2")];
+		mockFileLinks["child1.md"] = [createLink("grandchild")];
+		mockFileLinks["child2.md"] = [];
+		mockFileLinks["grandchild.md"] = [];
+
+		const rootNode = await bfsTraversal.traverse("parent.md");
+
+		// This should exercise the path where child nodes are successfully created
+		// and added to parent.children (lines 106-107)
+		expect(rootNode).not.toBeNull();
+		expect(rootNode?.title).toBe("parent");
+		expect(rootNode?.children.length).toBe(2);
+		expect(rootNode?.children[0].title).toBe("child1");
+		expect(rootNode?.children[1].title).toBe("child2");
+		expect(rootNode?.children[0].children.length).toBe(1);
+		expect(rootNode?.children[0].children[0].title).toBe("grandchild");
+	});
 });

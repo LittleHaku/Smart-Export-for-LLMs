@@ -30,7 +30,6 @@
 - [x] Wikilink parsing and extraction
 - [x] Depth-based content filtering logic
 - [x] Circular reference detection and handling
-- [x] Performance optimization with caching layer
 
 ### 1.3 Basic UI Framework
 
@@ -158,7 +157,6 @@
 - [ ] Context exclusion patterns
 - [ ] Manual context additions
 - [ ] Context budget allocation
-- [ ] Context caching system
 - [ ] Context refresh mechanisms
 
 ---
@@ -191,7 +189,6 @@
 - [ ] Lazy loading for large note sets
 - [ ] Memory usage optimization
 - [ ] Background processing for context generation
-- [ ] Caching strategy refinement
 
 ### 4.4 Integration Features
 
@@ -218,26 +215,6 @@ const estimateTokens = (text: string): number => {
 const calculateTokensAccurate = async (text: string, model: string): Promise<number> => {
 	// Implementation with tiktoken for precise token counting
 };
-```
-
-### Caching Architecture
-
-```typescript
-interface CacheEntry {
-	key: string;
-	data: any;
-	timestamp: number;
-	ttl: number;
-}
-
-class ExportCache {
-	private cache: Map<string, CacheEntry> = new Map();
-
-	get(key: string): any | null;
-	set(key: string, data: any, ttl?: number): void;
-	invalidate(pattern?: string): void;
-	cleanup(): void;
-}
 ```
 
 ### Smart Context Scoring
