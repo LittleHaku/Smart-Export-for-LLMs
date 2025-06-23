@@ -12,6 +12,7 @@ export class BFSTraversal {
 	private titleDepth: number;
 	private visited: Set<string> = new Set();
 	private cache: Map<string, ExportNode> = new Map();
+	private missingNotes: Set<string> = new Set();
 
 	/**
 	 * Creates an instance of the BFSTraversal engine.
@@ -26,11 +27,24 @@ export class BFSTraversal {
 	}
 
 	/**
+	 * Gets the set of missing notes encountered during traversal.
+	 * @returns {string[]} Array of missing note names.
+	 */
+	public getMissingNotes(): string[] {
+		return Array.from(this.missingNotes);
+	}
+
+	/**
 	 * Traverses the note graph starting from a root note.
 	 * @param {string} rootNotePath - The path of the starting note.
 	 * @returns {Promise<ExportNode | null>} The root of the generated export tree, or null if the root note is not found.
 	 */
 	public async traverse(rootNotePath: string): Promise<ExportNode | null> {
+		// Clear missing notes from any previous traversal
+		this.missingNotes.clear();
+		this.visited.clear();
+		this.cache.clear();
+
 		const rootFile = this.obsidianAPI.getTFile(rootNotePath);
 		if (!rootFile) {
 			console.error(`Root note not found: ${rootNotePath}`);
@@ -66,6 +80,9 @@ export class BFSTraversal {
 							parent: childNode,
 						});
 					}
+				} else if (!linkedFile) {
+					// Track missing notes (links that couldn't be resolved)
+					this.missingNotes.add(link.link);
 				}
 			}
 		}

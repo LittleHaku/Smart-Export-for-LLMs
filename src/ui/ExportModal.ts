@@ -196,15 +196,17 @@ export class ExportModal extends Modal {
 			if (!exportTree) {
 				return null;
 			}
+
+			const missingNotesCount = traversal.getMissingNotes().length;
 			let output: string;
 			const vaultPath = this.app.vault.getName();
 
 			switch (this.exportFormat) {
 				case "xml":
-					output = new XMLExporter().export(exportTree, vaultPath);
+					output = new XMLExporter().export(exportTree, vaultPath, missingNotesCount);
 					break;
 				case "llm-markdown":
-					output = new LlmMarkdownExporter().export(exportTree, vaultPath);
+					output = new LlmMarkdownExporter().export(exportTree, vaultPath, missingNotesCount);
 					break;
 				case "print-friendly-markdown":
 					output = new PrintFriendlyMarkdownExporter().export(exportTree);

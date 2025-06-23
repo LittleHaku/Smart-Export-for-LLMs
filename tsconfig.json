@@ -16,6 +16,6 @@
 			"@/*": ["src/*"]
 		}
 	},
-	"include": ["src/**/*.ts"],
-	"exclude": ["node_modules", "main.js"]
+	"include": ["src/**/*.ts", "tests/**/*.ts"],
+	"exclude": ["node_modules", "main.js", "coverage"]
 }

@@ -48,6 +48,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Product Requirements Document
 - Development roadmap and task breakdown
 
+## [0.1.1] - 2025-06-23
+
+### Added
+
+- Implemented a comprehensive test suite using Vitest.
+- Created mock data and Obsidian API stubs for isolated testing.
+- Added unit tests for the `BFSTraversal` engine, covering:
+  - Correct graph traversal logic.
+  - Content and title depth limits.
+  - Graceful handling of circular references.
+  - Correctly ignoring missing notes or unresolved links.
+- Configured code coverage reporting with `@vitest/coverage-v8`.
+- Resolved module resolution issues for the `obsidian` package in a test environment.
+- **Missing Notes Tracking**:
+  - Enhanced `BFSTraversal` engine to track unresolved wikilinks as missing notes.
+  - Updated `XMLExporter` and `LlmMarkdownExporter` to include missing notes count in metadata.
+  - Added tests to verify missing notes are properly tracked and reported.
+  - Integrated missing notes tracking into the main export workflow.
+
 ## [0.1.0] - 2025-06-22
 
 ### Added

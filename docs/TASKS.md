@@ -47,6 +47,7 @@
 - [x] Metadata inclusion handling
 - [x] Template variable substitution
 - [x] Export validation and error handling
+- [x] Missing notes tracking and reporting
 
 ---
 
@@ -261,7 +262,8 @@ const calculateRelevance = (note: VaultContextNote, exportedContent: string[]): 
 
 ### Unit Tests
 
-- [ ] BFS traversal algorithm correctness
+- [x] BFS traversal algorithm correctness
+- [x] Missing notes detection and tracking
 - [ ] Token calculation accuracy
 - [ ] XML output validation
 - [ ] Context generation algorithms

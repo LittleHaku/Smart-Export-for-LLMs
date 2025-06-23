@@ -10,14 +10,21 @@ export class XMLExporter {
 	 *
 	 * @param rootNode The root node of the export tree.
 	 * @param vaultPath The path of the vault.
+	 * @param missingNotes The number of missing notes encountered during traversal.
 	 * @returns A string containing the XML representation of the note tree.
 	 */
-	public export(rootNode: ExportNode, vaultPath: string): string {
+	public export(rootNode: ExportNode, vaultPath: string, missingNotes: number = 0): string {
 		const allNotes = this.flattenTree(rootNode);
 		const maxDepth = allNotes.reduce((max, note) => Math.max(max, note.depth), 0);
 
 		const xmlHeader = '<?xml version="1.0" encoding="UTF-8"?>';
-		const metadata = this.buildMetadata(rootNode, vaultPath, allNotes.length, 0, maxDepth);
+		const metadata = this.buildMetadata(
+			rootNode,
+			vaultPath,
+			allNotes.length,
+			missingNotes,
+			maxDepth
+		);
 		const noteStructure = this.buildNoteStructure(allNotes);
 		const noteContents = this.buildNoteContents(allNotes);
 
