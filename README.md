@@ -1,5 +1,7 @@
 # Smart Export for LLMs
 
+[![codecov](https://codecov.io/gh/LittleHaku/Smart-Export-for-LLMs/graph/badge.svg)](https://codecov.io/gh/LittleHaku/Smart-Export-for-LLMs)
+
 **Export interconnected Obsidian notes with configurable depth controls.**
 
 Smart Export gathers related notes using breadth-first traversal and exports them in a single file.
