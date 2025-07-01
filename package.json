@@ -1,6 +1,6 @@
 {
 	"name": "obsidian-llm-export-plugin",
-	"version": "0.1.0",
+	"version": "1.0.0",
 	"description": "Intelligently export interconnected Obsidian notes for LLM consumption with configurable depth and vault context",
 	"main": "main.js",
 	"scripts": {

@@ -1,96 +1,222 @@
-# Obsidian Sample Plugin
+# Smart Export for LLMs
 
-This is a sample plugin for Obsidian (https://obsidian.md).
+**Intelligently export interconnected Obsidian notes for Large Language Model consumption with configurable depth and advanced context options.**
 
-This project uses TypeScript to provide type checking and documentation.
-The repo depends on the latest plugin API (obsidian.d.ts) in TypeScript Definition format, which contains TSDoc comments describing what it does.
+Transform your knowledge vault into perfectly structured exports that LLMs can understand and work with. Using breadth-first search traversal of wikilinks, Smart Export discovers related notes and creates comprehensive, token-aware exports optimized for AI workflows.
 
-This sample plugin demonstrates some of the basic functionality the plugin API can do.
+## ✨ Key Features
 
-- Adds a ribbon icon, which shows a Notice when clicked.
-- Adds a command "Open Sample Modal" which opens a Modal.
-- Adds a plugin setting tab to the settings page.
-- Registers a global click event and output 'click' to the console.
-- Registers a global interval which logs 'setInterval' to the console.
+### 🧠 **Smart Note Discovery**
 
-## First time developing plugins?
+- **Breadth-First Search**: Automatically discovers interconnected notes through wikilinks
+- **Dual-Depth Control**: Separate controls for full content vs. title-only inclusion
+- **Missing Link Tracking**: Identifies and reports broken wikilinks for vault maintenance
 
-Quick starting guide for new plugin devs:
+### 🎛️ **Flexible Export Options**
 
-- Check if [someone already developed a plugin for what you want](https://obsidian.md/plugins)! There might be an existing plugin similar enough that you can partner up with.
-- Make a copy of this repo as a template with the "Use this template" button (login to GitHub if you don't see it).
-- Clone your repo to a local development folder. For convenience, you can place this folder in your `.obsidian/plugins/your-plugin-name` folder.
-- Install NodeJS, then run `npm i` in the command line under your repo folder.
-- Run `npm run dev` to compile your plugin from `main.ts` to `main.js`.
-- Make changes to `main.ts` (or create new `.ts` files). Those changes should be automatically compiled into `main.js`.
-- Reload Obsidian to load the new version of your plugin.
-- Enable plugin in settings window.
-- For updates to the Obsidian API run `npm update` in the command line under your repo folder.
+- **XML Format**: Structured export with comprehensive metadata
+- **LLM Markdown**: Optimized format for AI consumption with clear structure
+- **Print-Friendly**: Clean, readable format for human review
 
-## Releasing new releases
+### 📊 **Token-Aware Design**
 
-- Update your `manifest.json` with your new version number, such as `1.0.1`, and the minimum Obsidian version required for your latest release.
-- Update your `versions.json` file with `"new-plugin-version": "minimum-obsidian-version"` so older versions of Obsidian can download an older version of your plugin that's compatible.
-- Create new GitHub release using your new version number as the "Tag version". Use the exact version number, don't include a prefix `v`. See here for an example: https://github.com/obsidianmd/obsidian-sample-plugin/releases
-- Upload the files `manifest.json`, `main.js`, `styles.css` as binary attachments. Note: The manifest.json file must be in two places, first the root path of your repository and also in the release.
-- Publish the release.
+- **Real-time Token Counting**: Live estimates as you configure your export
+- **LLM Context Warnings**: Smart alerts for GPT-4 (128k) and Claude (200k) limits
+- **Optimization Guidance**: Helps you stay within context windows
 
-> You can simplify the version bump process by running `npm version patch`, `npm version minor` or `npm version major` after updating `minAppVersion` manually in `manifest.json`.
-> The command will bump version in `manifest.json` and `package.json`, and add the entry for the new version to `versions.json`
+### 🎨 **Modern Interface**
 
-## Adding your plugin to the community plugin list
+- **Intuitive Controls**: Card-based layout with clear visual hierarchy
+- **Smart Defaults**: Auto-selects current note, reasonable depth settings
+- **Rich Tooltips**: Built-in help system explains every feature
 
-- Check the [plugin guidelines](https://docs.obsidian.md/Plugins/Releasing/Plugin+guidelines).
-- Publish an initial version.
-- Make sure you have a `README.md` file in the root of your repo.
-- Make a pull request at https://github.com/obsidianmd/obsidian-releases to add your plugin.
+## 📦 Installation
 
-## How to use
+### From Obsidian Community Plugins
 
-- Clone this repo.
-- Make sure your NodeJS is at least v16 (`node --version`).
-- `npm i` or `yarn` to install dependencies.
-- `npm run dev` to start compilation in watch mode.
+1. Open **Settings** → **Community Plugins**
+2. **Browse** and search for "Smart Export for LLMs"
+3. **Install** and **Enable** the plugin
+4. Find the 🧠 brain icon in your ribbon or use **Cmd/Ctrl+P** → "Smart Export"
 
-## Manually installing the plugin
+### Manual Installation
 
-- Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/your-plugin-id/`.
+1. Download the latest release from [GitHub Releases](https://github.com/LittleHaky/obsidian-llm-export-plugin/releases)
+2. Extract to `VaultFolder/.obsidian/plugins/smart-export-llms/`
+3. Reload Obsidian and enable the plugin
 
-## Improve code quality with eslint (optional)
+## 🚀 Quick Start
 
-- [ESLint](https://eslint.org/) is a tool that analyzes your code to quickly find problems. You can run ESLint against your plugin to find common bugs and ways to improve your code.
-- To use eslint with this project, make sure to install eslint from terminal:
-  - `npm install -g eslint`
-- To use eslint to analyze this project use this command:
-  - `eslint main.ts`
-  - eslint will then create a report with suggestions for code improvement by file and line number.
-- If your source code is in a folder, such as `src`, you can use eslint with this command to analyze all files in that folder:
-  - `eslint .\src\`
+1. **Open the Export Dialog**: Click the 🧠 brain icon in the ribbon or use **Cmd/Ctrl+P** → "Smart Export"
+2. **Select Root Note**: Choose your starting point (defaults to current note)
+3. **Adjust Depth**: Set how deep to traverse (Content Depth: 3, Title Depth: 6 recommended)
+4. **Choose Format**: Pick XML for structured data or Markdown for readability
+5. **Export**: Click "🚀 Export to Clipboard" and paste into your favorite LLM
 
-## Funding URL
+## 📋 Export Formats
 
-You can include funding URLs where people who use your plugin can financially support it.
+### XML Format
 
-The simple way is to set the `fundingUrl` field to your link in your `manifest.json` file:
-
-```json
-{
-	"fundingUrl": "https://buymeacoffee.com"
-}
+```xml
+<obsidian_export>
+  <metadata>
+    <export_timestamp>2025-01-25T10:30:00.000Z</export_timestamp>
+    <starting_note>Machine Learning</starting_note>
+    <total_notes_exported>5</total_notes_exported>
+    <missing_notes_count>0</missing_notes_count>
+  </metadata>
+  <note_contents>
+    <note id="1" name="Machine Learning">
+      <![CDATA[# Machine Learning
+      Content with [[wikilinks]] preserved...]]>
+    </note>
+  </note_contents>
+</obsidian_export>
 ```
 
-If you have multiple URLs, you can also do:
+### LLM Markdown
 
-```json
-{
-	"fundingUrl": {
-		"Buy Me a Coffee": "https://buymeacoffee.com",
-		"GitHub Sponsor": "https://github.com/sponsors",
-		"Patreon": "https://www.patreon.com/"
-	}
-}
+```markdown
+# Obsidian Vault Export
+
+**Export Details:**
+
+- Starting Note: Machine Learning
+- Total Notes: 5
+- Export Depth: Content (3), Titles (6)
+- Generated: 2025-01-25T10:30:00.000Z
+
+## Note Contents
+
+### 1. Machine Learning
+
+# Machine Learning
+
+Content with [[wikilinks]] preserved...
 ```
 
-## API Documentation
+## ⚙️ Configuration
 
-See https://github.com/obsidianmd/obsidian-api
+### Depth Controls
+
+- **Content Depth (1-20)**: Levels of linked notes to include full content
+- **Title Depth (1-30)**: Additional levels to include titles only for context
+- _Rule_: Title Depth must be ≥ Content Depth
+
+### Export Settings
+
+Access via **Settings** → **Smart Export for LLMs**:
+
+- **Default Content Depth**: Your preferred starting depth for content
+- **Default Title Depth**: Your preferred starting depth for titles
+- **Default Export Format**: Choose your preferred output format
+- **Auto-select Current Note**: Whether to automatically pick the active note
+
+## 🎯 Use Cases
+
+### 📚 **Research & Analysis**
+
+```
+Prompt: "Analyze these interconnected notes about [topic] and identify key themes, connections, and knowledge gaps."
+```
+
+### ✍️ **Content Creation**
+
+```
+Prompt: "Based on these notes, write a comprehensive article about [topic], ensuring you reference the key concepts and relationships shown."
+```
+
+### 🔍 **Knowledge Discovery**
+
+```
+Prompt: "Review these notes and suggest 5 new connections or research directions I should explore in my vault."
+```
+
+### 📖 **Study Assistant**
+
+```
+Prompt: "Create a study guide from these interconnected notes, organizing the concepts hierarchically and highlighting important relationships."
+```
+
+## 🔧 Advanced Tips
+
+### Optimizing Token Usage
+
+- Start with **Content Depth: 2-3** for most use cases
+- Use **Title Depth: 5-8** to provide broader context without overwhelming content
+- Monitor the token counter to stay within your LLM's limits
+
+### Organizing for Export
+
+- Use descriptive note titles (they appear in title-only levels)
+- Create hub notes that link to related concepts
+- Maintain clean wikilink structure for better traversal
+
+### Export Strategies
+
+- **Deep Dive**: High content depth (4-6) for comprehensive analysis
+- **Broad Overview**: Low content depth (1-2), high title depth (8-12) for big picture
+- **Balanced**: Medium depths (3/6) for most research and writing tasks
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+**"No notes found" or empty export:**
+
+- Ensure your root note has wikilinks to other notes
+- Check that linked notes exist in your vault
+- Verify note names match wikilink text exactly
+
+**Token count too high:**
+
+- Reduce Content Depth or Title Depth
+- Choose a more specific root note with fewer connections
+- Use Print-Friendly format for smaller exports
+
+**Missing links reported:**
+
+- Check the export output for missing notes list
+- Fix broken wikilinks in your vault
+- Use exact note names in your wikilinks
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
+
+### Development Setup
+
+```bash
+git clone https://github.com/LittleHaky/obsidian-llm-export-plugin
+cd obsidian-llm-export-plugin
+npm install
+npm run dev
+```
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 💖 Support
+
+If Smart Export saves you time and enhances your workflow, consider supporting its development:
+
+- ⭐ **Star this repo** to show your support
+- 🐛 **Report issues** to help improve the plugin
+- 💡 **Share ideas** for new features
+- ☕ **Buy me a coffee** (coming soon!)
+
+## 🗺️ Roadmap
+
+### Coming Soon
+
+- **Vault Context**: Include broader vault context for knowledge gap analysis
+- **Template System**: Pre-built prompts for common LLM workflows
+- **Export Presets**: Save and reuse your favorite configurations
+- **Batch Export**: Export multiple root notes at once
+
+---
+
+**Made with ❤️ for the Obsidian community**
+
+_Transform your personal knowledge base into AI-ready insights._

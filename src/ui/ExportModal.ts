@@ -8,6 +8,13 @@ import { XMLExporter } from "../engine/XMLExporter";
 import { LlmMarkdownExporter } from "../engine/LlmMarkdownExporter";
 import { PrintFriendlyMarkdownExporter } from "../engine/PrintFriendlyMarkdownExporter";
 
+interface SmartExportSettings {
+	defaultContentDepth: number;
+	defaultTitleDepth: number;
+	defaultExportFormat: "xml" | "llm-markdown" | "print-friendly-markdown";
+	autoSelectCurrentNote: boolean;
+}
+
 /**
  * The main modal for configuring and triggering a smart export.
  * It allows users to select a root note, adjust traversal depth,
@@ -19,18 +26,24 @@ export class ExportModal extends Modal {
 	/** The HTML element that displays the name of the selected file. */
 	private selectedFileEl: HTMLElement;
 	/** The depth for including full note content. */
-	private contentDepth = 3;
+	private contentDepth: number;
 	/** The depth for including only note titles. */
-	private titleDepth = 6;
+	private titleDepth: number;
 	/** The selected export format. */
-	private exportFormat: "xml" | "llm-markdown" | "print-friendly-markdown" = "xml";
+	private exportFormat: "xml" | "llm-markdown" | "print-friendly-markdown";
 	/** The HTML element that displays the estimated token count. */
 	private tokenCountEl: HTMLElement;
 	/** A debounced function to update the token count dynamically. */
 	private debouncedTokenUpdate = debounce(this.calculateAndDisplayTokens, 500, true);
+	/** Plugin settings for default values. */
+	private settings: SmartExportSettings;
 
-	constructor(app: App) {
+	constructor(app: App, settings: SmartExportSettings) {
 		super(app);
+		this.settings = settings;
+		this.contentDepth = settings.defaultContentDepth;
+		this.titleDepth = settings.defaultTitleDepth;
+		this.exportFormat = settings.defaultExportFormat;
 	}
 
 	/**
@@ -72,14 +85,14 @@ export class ExportModal extends Modal {
 			cls: "smart-export-selected-file",
 		});
 
-		// Auto-select active file if available
-		const activeFile = this.app.workspace.getActiveFile();
-		if (activeFile) {
-			this.selectedFile = activeFile;
-			this.updateSelectedFile();
-		} else {
-			this.updateSelectedFile();
+		// Auto-select active file if available and enabled in settings
+		if (this.settings.autoSelectCurrentNote) {
+			const activeFile = this.app.workspace.getActiveFile();
+			if (activeFile) {
+				this.selectedFile = activeFile;
+			}
 		}
+		this.updateSelectedFile();
 
 		// Depth configuration section
 		const depthSection = contentEl.createDiv({ cls: "smart-export-section" });
