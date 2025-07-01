@@ -1,0 +1,111 @@
+name: ✨ Feature Request
+description: Suggest a new feature or enhancement
+title: "[Feature]: "
+labels: ["enhancement", "needs-triage"]
+assignees:
+  - LittleHaku
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a new feature! Please provide detailed information to help us understand and evaluate your request.
+
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Feature Description
+      description: A clear and concise description of the feature you'd like to see.
+      placeholder: Describe the feature and what it should do.
+    validations:
+      required: true
+
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use Case / Problem Statement
+      description: What problem does this feature solve? How would you use it?
+      placeholder: |
+        - What workflow or task would this feature improve?
+        - What is currently difficult or impossible to do?
+        - How would this feature benefit other users?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed Solution
+      description: How do you envision this feature working?
+      placeholder: |
+        - What would the UI look like?
+        - How would users interact with this feature?
+        - What settings or options should be available?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: feature-category
+    attributes:
+      label: Feature Category
+      description: Which area of the plugin would this feature affect?
+      options:
+        - Export Formats (new output types)
+        - User Interface (UI improvements)
+        - Note Discovery (traversal logic)
+        - Vault Context (broader vault integration)
+        - Settings & Configuration
+        - Performance & Optimization
+        - Integration (with other plugins)
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority Level
+      description: How important is this feature to your workflow?
+      options:
+        - High - I need this feature to achieve my goals
+        - Medium - This would significantly improve my workflow
+        - Low - This would be a nice-to-have enhancement
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: Have you considered any alternative solutions or workarounds?
+      placeholder: |
+        - What workarounds are you currently using?
+        - Are there other plugins or tools that provide similar functionality?
+        - What other approaches could solve this problem?
+    validations:
+      required: false
+
+  - type: textarea
+    id: examples
+    attributes:
+      label: Examples or References
+      description: Do you have examples of this feature in other tools or detailed mockups?
+      placeholder: |
+        - Screenshots or mockups
+        - Links to similar features in other tools
+        - Sample data or use case scenarios
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Checklist
+      description: Please confirm the following.
+      options:
+        - label: I have searched existing issues to make sure this feature hasn't been requested before.
+          required: true
+        - label: This feature aligns with the plugin's purpose of LLM-ready note export.
+          required: true
+        - label: I understand that feature development takes time and this request may not be implemented immediately.
+          required: true

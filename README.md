@@ -1,8 +1,8 @@
 # Smart Export for LLMs
 
-**Intelligently export interconnected Obsidian notes for Large Language Model consumption with configurable depth and advanced context options.**
+**Export interconnected Obsidian notes with configurable depth controls.**
 
-Transform your knowledge vault into perfectly structured exports that LLMs can understand and work with. Using breadth-first search traversal of wikilinks, Smart Export discovers related notes and creates comprehensive, token-aware exports optimized for AI workflows.
+Smart Export gathers related notes using breadth-first traversal and exports them in a single file.
 
 ## ✨ Key Features
 
@@ -41,9 +41,17 @@ Transform your knowledge vault into perfectly structured exports that LLMs can u
 
 ### Manual Installation
 
-1. Download the latest release from [GitHub Releases](https://github.com/LittleHaky/obsidian-llm-export-plugin/releases)
-2. Extract to `VaultFolder/.obsidian/plugins/smart-export-llms/`
-3. Reload Obsidian and enable the plugin
+- **Clone directly into your vault's plugins folder**
+
+  ```bash
+  # From inside your vault
+  cd .obsidian/plugins
+  git clone https://github.com/LittleHaku/obsidian-llm-export-plugin smart-export-llms
+  ```
+
+  Reload Obsidian and enable the plugin from **Settings → Community Plugins**.
+
+- **Alternative (ZIP)**: Download the latest release from [GitHub Releases](https://github.com/LittleHaku/obsidian-llm-export-plugin/releases), and make sure the extracted folder (`smart-export-llms`) is placed inside `.obsidian/plugins/` before reloading Obsidian.
 
 ## 🚀 Quick Start
 
@@ -187,7 +195,7 @@ We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.
 ### Development Setup
 
 ```bash
-git clone https://github.com/LittleHaky/obsidian-llm-export-plugin
+git clone https://github.com/LittleHaku/obsidian-llm-export-plugin
 cd obsidian-llm-export-plugin
 npm install
 npm run dev
@@ -219,4 +227,4 @@ If Smart Export saves you time and enhances your workflow, consider supporting i
 
 **Made with ❤️ for the Obsidian community**
 
-_Transform your personal knowledge base into AI-ready insights._
+_Export your notes with ease._

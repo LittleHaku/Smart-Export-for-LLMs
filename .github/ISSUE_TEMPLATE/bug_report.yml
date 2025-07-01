@@ -1,0 +1,133 @@
+name: 🐛 Bug Report
+description: Report a bug or unexpected behavior
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+assignees:
+  - LittleHaku
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! Please fill out the following information to help us diagnose and fix the issue.
+
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is.
+      placeholder: Describe what happened and what you expected to happen.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction-steps
+    attributes:
+      label: Steps to Reproduce
+      description: Step-by-step instructions to reproduce the bug.
+      placeholder: |
+        1. Open Smart Export dialog
+        2. Select root note "..."
+        3. Set depth to...
+        4. Click export...
+        5. See error...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior
+      description: What did you expect to happen?
+      placeholder: Describe the expected behavior.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: export-format
+    attributes:
+      label: Export Format
+      description: Which export format were you using when the bug occurred?
+      options:
+        - XML
+        - LLM Markdown
+        - Print-Friendly Markdown
+        - Not applicable
+    validations:
+      required: true
+
+  - type: input
+    id: obsidian-version
+    attributes:
+      label: Obsidian Version
+      description: What version of Obsidian are you using?
+      placeholder: "1.5.3"
+    validations:
+      required: true
+
+  - type: input
+    id: plugin-version
+    attributes:
+      label: Plugin Version
+      description: What version of Smart Export for LLMs are you using?
+      placeholder: "1.0.0"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: operating-system
+    attributes:
+      label: Operating System
+      description: What operating system are you using?
+      options:
+        - Windows
+        - macOS
+        - Linux
+        - Mobile (iOS)
+        - Mobile (Android)
+    validations:
+      required: true
+
+  - type: textarea
+    id: vault-info
+    attributes:
+      label: Vault Information
+      description: Information about your vault that might be relevant.
+      placeholder: |
+        - Vault size (approximate number of notes):
+        - Note structure (deep linking, many connections, etc.):
+        - Other relevant plugins:
+    validations:
+      required: false
+
+  - type: textarea
+    id: error-messages
+    attributes:
+      label: Error Messages or Console Output
+      description: Any error messages you saw or console output (open DevTools with Ctrl/Cmd+Shift+I).
+      placeholder: Paste any error messages or console logs here.
+      render: text
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any other context about the problem.
+      placeholder: Screenshots, configuration details, or other relevant information.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Checklist
+      description: Please confirm the following.
+      options:
+        - label: I have searched existing issues to make sure this bug hasn't been reported before.
+          required: true
+        - label: I have provided all the requested information above.
+          required: true
+        - label: I understand that this is a free, open-source project and that responses may take time.
+          required: true

@@ -5,6 +5,6 @@
 	"minAppVersion": "0.15.0",
 	"description": "Intelligently export interconnected Obsidian notes for LLM consumption with configurable depth and vault context",
 	"author": "Iván Sotillo",
-	"authorUrl": "https://github.com/LittleHaky",
+	"authorUrl": "https://github.com/LittleHaku",
 	"isDesktopOnly": false
 }
