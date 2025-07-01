@@ -2,18 +2,10 @@ import { App, Modal, Setting, TFile, SliderComponent, Notice, debounce } from "o
 import { RootNoteSuggestModal } from "./RootNoteSuggestModal";
 import { BFSTraversal } from "../engine/BFSTraversal";
 import { ObsidianAPI } from "../obsidian-api";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { ExportNode } from "../types";
+import { SmartExportSettings } from "../types";
 import { XMLExporter } from "../engine/XMLExporter";
 import { LlmMarkdownExporter } from "../engine/LlmMarkdownExporter";
 import { PrintFriendlyMarkdownExporter } from "../engine/PrintFriendlyMarkdownExporter";
-
-interface SmartExportSettings {
-	defaultContentDepth: number;
-	defaultTitleDepth: number;
-	defaultExportFormat: "xml" | "llm-markdown" | "print-friendly-markdown";
-	autoSelectCurrentNote: boolean;
-}
 
 /**
  * The main modal for configuring and triggering a smart export.
@@ -34,7 +26,7 @@ export class ExportModal extends Modal {
 	/** The HTML element that displays the estimated token count. */
 	private tokenCountEl: HTMLElement;
 	/** A debounced function to update the token count dynamically. */
-	private debouncedTokenUpdate = debounce(this.calculateAndDisplayTokens, 500, true);
+	private debouncedTokenUpdate = debounce(() => this.calculateAndDisplayTokens(), 500, true);
 	/** Plugin settings for default values. */
 	private settings: SmartExportSettings;
 

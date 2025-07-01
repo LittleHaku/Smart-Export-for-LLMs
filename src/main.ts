@@ -1,12 +1,6 @@
 import { App, Plugin, PluginSettingTab, Setting } from "obsidian";
 import { ExportModal } from "./ui/ExportModal";
-
-interface SmartExportSettings {
-	defaultContentDepth: number;
-	defaultTitleDepth: number;
-	defaultExportFormat: "xml" | "llm-markdown" | "print-friendly-markdown";
-	autoSelectCurrentNote: boolean;
-}
+import { SmartExportSettings } from "./types";
 
 const DEFAULT_SETTINGS: SmartExportSettings = {
 	defaultContentDepth: 3,

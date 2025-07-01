@@ -7,16 +7,16 @@ import { App, FuzzySuggestModal, TFile } from "obsidian";
  */
 export class RootNoteSuggestModal extends FuzzySuggestModal<TFile> {
 	/** A callback function that is executed when a user selects a file. */
-	onChooseItem: (item: TFile, evt: MouseEvent | KeyboardEvent) => void;
+	private onSelect: (item: TFile) => void;
 
 	/**
 	 * Creates an instance of RootNoteSuggestModal.
 	 * @param {App} app - The Obsidian App instance.
-	 * @param {(item: TFile, evt: MouseEvent | KeyboardEvent) => void} onChooseItem - The callback to execute when an item is chosen.
+	 * @param {(item: TFile) => void} onSelect - The callback to execute when an item is chosen.
 	 */
-	constructor(app: App, onChooseItem: (item: TFile, evt: MouseEvent | KeyboardEvent) => void) {
+	constructor(app: App, onSelect: (item: TFile) => void) {
 		super(app);
-		this.onChooseItem = onChooseItem;
+		this.onSelect = onSelect;
 	}
 
 	/**
@@ -34,5 +34,14 @@ export class RootNoteSuggestModal extends FuzzySuggestModal<TFile> {
 	 */
 	getItemText(item: TFile): string {
 		return item.basename;
+	}
+
+	/**
+	 * Called when a file is selected by the user.
+	 * @param {TFile} item - The selected file.
+	 * @param {MouseEvent | KeyboardEvent} evt - The event that triggered the selection.
+	 */
+	onChooseItem(item: TFile, evt: MouseEvent | KeyboardEvent) {
+		this.onSelect(item);
 	}
 }

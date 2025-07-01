@@ -86,3 +86,17 @@ export interface ExportConfiguration {
 	/** The maximum token limit for the export. */
 	maxTokens?: number;
 }
+
+/**
+ * Defines the settings for the Smart Export plugin.
+ */
+export interface SmartExportSettings {
+	/** The default depth for including full note content. */
+	defaultContentDepth: number;
+	/** The default depth for including only note titles. */
+	defaultTitleDepth: number;
+	/** The default format for the exported output. */
+	defaultExportFormat: "xml" | "llm-markdown" | "print-friendly-markdown";
+	/** Whether to automatically select the currently active note as the root for export. */
+	autoSelectCurrentNote: boolean;
+}
