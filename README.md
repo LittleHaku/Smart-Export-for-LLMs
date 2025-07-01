@@ -1,7 +1,7 @@
 # Smart Export for LLMs
 
 [![CI/CD](https://github.com/LittleHaku/Smart-Export-for-LLMs/actions/workflows/ci.yml/badge.svg)](https://github.com/LittleHaku/Smart-Export-for-LLMs/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/LittleHaku/Smart-Export-for-LLMs/graph/badge.svg)](https://codecov.io/gh/LittleHaku/Smart-Export-for-LLMs)
+[![codecov](https://codecov.io/gh/LittleHaku/Smart-Export-for-LLMs/branch/main/graph/badge.svg)](https://codecov.io/gh/LittleHaku/Smart-Export-for-LLMs/branch/main)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Version](https://img.shields.io/github/v/release/LittleHaku/Smart-Export-for-LLMs)](https://github.com/LittleHaku/Smart-Export-for-LLMs/releases)
 [![Downloads](https://img.shields.io/github/downloads/LittleHaku/Smart-Export-for-LLMs/total)](https://github.com/LittleHaku/Smart-Export-for-LLMs/releases)
