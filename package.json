@@ -1,6 +1,6 @@
 {
 	"name": "obsidian-llm-export-plugin",
-	"version": "0.1.0",
+	"version": "1.0.0",
 	"description": "Intelligently export interconnected Obsidian notes for LLM consumption with configurable depth and vault context",
 	"main": "main.js",
 	"scripts": {
@@ -11,6 +11,7 @@
 		"lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
 		"format": "prettier --write '**/*.{js,ts,tsx,md}'",
 		"format:check": "prettier --check '**/*.{js,ts,tsx,md}'",
+		"test": "vitest --coverage",
 		"prepare": "husky"
 	},
 	"keywords": [
@@ -27,13 +28,16 @@
 		"@types/node": "^16.11.6",
 		"@typescript-eslint/eslint-plugin": "^8.19.1",
 		"@typescript-eslint/parser": "^8.19.1",
+		"@vitest/coverage-v8": "^3.2.4",
 		"builtin-modules": "3.3.0",
 		"esbuild": "0.25.0",
 		"eslint": "8.57.0",
 		"husky": "^9.1.7",
+		"jsdom": "^26.1.0",
 		"obsidian": "latest",
 		"prettier": "^3.5.3",
 		"tslib": "2.4.0",
-		"typescript": "^5.7.2"
+		"typescript": "^5.7.2",
+		"vitest": "^3.2.4"
 	}
 }

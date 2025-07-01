@@ -160,6 +160,23 @@ Since Obsidian plugins are difficult to monetize directly, focus on community-dr
 
 ### **📤 Output Options**
 
+- **Export Destinations**:
+  - **Copy to Clipboard**: Formatted for immediate LLM pasting
+  - **File Export**: Save as `.xml`, `.md`, or `.txt` with configurable options:
+    - **File Location**: Choose between:
+      - Current folder
+      - Dedicated exports folder
+      - Custom location
+    - **File Naming**: Options for:
+      - `[root-note]-export-[timestamp]`
+      - `llm-export-[timestamp]`
+      - Custom name template
+    - **File Format**: Matching the selected export format:
+      - `.xml` for XML exports
+      - `.md` for Markdown exports
+      - `.txt` for plain text exports
+    - **Overwrite Protection**: Prompt if file exists
+  - **New Note Creation**: Create "LLM Export - [timestamp]" note
 - **Template System**
   - **Connection Discovery**: "Analyze these notes and suggest connections to other notes in my vault..."
   - **Knowledge Gap Analysis**: "Based on these notes and my vault structure, identify potential knowledge gaps..."
@@ -167,10 +184,6 @@ Since Obsidian plugins are difficult to monetize directly, focus on community-dr
   - **Research Assistant**: "Use these notes as reference material for..."
   - **Creative Writing**: "Draw inspiration from these connected ideas..."
   - **Custom Templates**: User-defined prompt templates with variables
-- Generate:
-  - **Copy to Clipboard**: Formatted for immediate LLM pasting
-  - **New Note Creation**: Create "LLM Export - [timestamp]" note
-  - **File Export**: Save as .xml, .txt, or .md with metadata
 
 ---
 
@@ -210,7 +223,6 @@ Vault Context Algorithm:
 
 ### Performance Considerations
 
-- **Caching**: Store traversal results and vault context for recently exported note trees
 - **Incremental Loading**: Load note content and vault context on-demand in preview
 - **Background Processing**: Run BFS traversal and vault analysis in web worker
 - **Memory Management**: Limit concurrent note loading and context processing
@@ -228,6 +240,7 @@ interface ExportNode {
 	children: ExportNode[];
 	tokenCount: number;
 	lastModified: Date;
+	maxTokens?: number;
 }
 
 interface VaultContext {
@@ -258,6 +271,94 @@ interface ExportConfiguration {
 	templateId: string;
 	maxTokens?: number;
 }
+```
+
+### Export Format Example (XML)
+
+```xml
+<obsidian_export>
+  <metadata>
+    <export_timestamp>2025-05-25T19:55:57.175Z</export_timestamp>
+    <vault_path>.</vault_path>
+    <starting_note>Machine Learning</starting_note>
+    <total_notes_exported>5</total_notes_exported>
+    <missing_notes_count>0</missing_notes_count>
+    <max_depth_used>2</max_depth_used>
+    <processing_order>BFS (Breadth-First Search)</processing_order>
+  </metadata>
+  <note_structure>
+    <description>
+      This export contains a knowledge graph of interconnected Obsidian notes.
+      Notes are presented in breadth-first order starting from the root note.
+      Links between notes are preserved as [[wiki-style links]].
+      Missing notes (referenced but not found) are listed separately.
+    </description>
+    <included_notes>
+      <note id="1" name="Machine Learning" />
+      <note id="2" name="Artificial Intelligence" />
+      <note id="3" name="Cross-Entropy Loss" />
+      <note id="4" name="k-NN Nearest Neighbours" />
+      <note id="5" name="Decision Trees" />
+    </included_notes>
+  </note_structure>
+  <note_contents>
+    <note id="1" name="Machine Learning">
+---
+tags:
+aliases:
+  - Aprendizaje Automático
+type: note
+status: sprout
+created: 2022-12-01
+rating:
+---
+
+
+- `Status:` #📝/⭐ #note
+Tags: [[]]
+Links: [[Artificial Intelligence|Inteligencia Artificial]]
+
+---
+
+
+# Machine Learning
+# Conceptos Generales
+- **Atributo**: característica que describe parcialmente a los elementos (columna de una tabla)
+- **Instancia**: un elemento definido por los valores de sus atributos (fila de una tabla)
+- **Clase**: Subconjuntos disjuntos (categorías) en los que se quiere dividir el conjunto de instancias (una de las columnas)
+#### Binary Entropy
+[[Cross-Entropy Loss]]
+$H(X)=H_b(p)=-p\log_2p-q\log_2q$ (in bits)
+#### Entropy for a discrete r.v.
+$H(X)=-\sum P(X=x_i)\log_2P(X=x_i)$ (in bits)
+#### Conditional Entropy
+$H(Y|X)=-\sum P(X=x_i)*H(Y|X=x_i)$
+# [[k-NN Nearest Neighbours]]
+# [[Decision Trees]]
+
+
+Created: 2022-12-01 20:12
+    </note>
+    <note id="2" name="Artificial Intelligence">
+---
+aliases: []
+tags: area
+created: 2024-04-02
+link: "[[02 - My Areas Database]]"
+---
+
+
+---
+
+
+# Artificial Intelligence
+
+
+
+Created: 2024-04-02 23:04
+    </note>
+  </note_contents>
+</obsidian_export>
 ```
 
 ---
@@ -337,7 +438,6 @@ interface ExportConfiguration {
 **Advanced Options**
 
 - BFS traversal limits (max notes, timeout)
-- Caching preferences
 - Custom XML/template formatting
 - Smart context algorithm parameters
 
