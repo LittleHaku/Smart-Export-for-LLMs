@@ -6,8 +6,6 @@
 	"description": "Export interconnected Obsidian notes for LLM consumption with configurable depth and vault context",
 	"author": "Iván Sotillo",
 	"authorUrl": "https://github.com/LittleHaku",
-	"fundingUrl": {
-		"Buy Me a Coffee": "https://buymeacoffee.com/littlehaku"
-	},
+	"fundingUrl": "https://buymeacoffee.com/littlehaku",
 	"isDesktopOnly": false
 }
