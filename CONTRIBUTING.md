@@ -1,24 +1,24 @@
 # Contributing to Smart Export for LLMs
 
-Thank you for your interest in contributing to Smart Export for LLMs! 🎉 This document provides guidelines and information for contributors.
+Thank you for your interest in contributing to Smart Export for LLMs. This document provides guidelines and information for contributors to help maintain code quality and ensure a smooth development process.
 
-## 🌟 How to Contribute
+## How to Contribute
 
-We welcome contributions of all kinds:
+We welcome contributions of all types:
 
-- 🐛 **Bug reports** - Help us identify and fix issues
-- ✨ **Feature requests** - Suggest new functionality
-- 💻 **Code contributions** - Submit bug fixes or new features
+- 🐛 **Bug Reports** - Help identify and resolve issues
+- ✨ **Feature Requests** - Suggest new functionality and improvements
+- 💻 **Code Contributions** - Submit bug fixes or new features
 - 📚 **Documentation** - Improve guides, examples, and explanations
-- 🧪 **Testing** - Help us test new features or edge cases
-- 💡 **Ideas & Discussion** - Share your thoughts on improvements
+- 🧪 **Testing** - Help test new features or edge cases
+- 💡 **Ideas & Discussion** - Share thoughts on improvements and direction
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
-- **Node.js** 18+ and **npm**
-- **Obsidian** (for testing)
+- **Node.js** 18+ and **pnpm** (npm will also work)
+- **Obsidian** (for testing your changes)
 - **Git** for version control
 
 ### Development Setup
@@ -27,33 +27,33 @@ We welcome contributions of all kinds:
 2. **Clone** your fork locally:
 
    ```bash
-   git clone https://github.com/LittleHaku/obsidian-llm-export-plugin.git
-   cd obsidian-llm-export-plugin
+   git clone https://github.com/LittleHaku/smart-export-for-llms.git
+   cd smart-export-for-llms
    ```
 
 3. **Install dependencies**:
 
    ```bash
-   npm install
+   pnpm install
    ```
 
 4. **Start development mode**:
 
    ```bash
-   npm run dev
+   pnpm run dev
    ```
 
-5. **Link to Obsidian** (for testing):
+5. **Link to Obsidian** for testing:
 
-   - Clone (or symlink) the plugin into your test vault's `.obsidian/plugins/` directory so that the folder name is `smart-export-llms`:
+   - Clone your fork into your test vault's `.obsidian/plugins/` directory:
 
      ```bash
      # Inside your test vault
      cd .obsidian/plugins
-     git clone https://github.com/<your-username>/obsidian-llm-export-plugin smart-export-llms
+     git clone https://github.com/<your-username>/smart-export-for-llms.git smart-export-for-llms
      ```
 
-   Reload Obsidian and enable the plugin
+   Then reload Obsidian and enable the plugin.
 
 ### Development Workflow
 
@@ -63,14 +63,14 @@ We welcome contributions of all kinds:
    git checkout -b feature/your-feature-name
    ```
 
-2. **Make your changes** following our coding standards
+2. **Make your changes** following the coding standards below
 
 3. **Test your changes**:
 
    ```bash
-   npm test                # Run all tests
-   npm run lint            # Check code style
-   npm run format:check    # Check formatting
+   pnpm test                # Run all tests
+   pnpm run lint            # Check code style
+   pnpm run format:check    # Check formatting
    ```
 
 4. **Commit your changes**:
@@ -85,18 +85,18 @@ We welcome contributions of all kinds:
    git push origin feature/your-feature-name
    ```
 
-## 📋 Code Standards
+## Code Standards
 
-### TypeScript & Code Style
+### TypeScript and Code Style
 
-- **Strict TypeScript**: We use strict mode for type safety
-- **ESLint**: Follow our ESLint configuration
-- **Prettier**: Code is automatically formatted
-- **Consistent naming**: Use camelCase for variables, PascalCase for classes
+- **Strict TypeScript**: We use strict mode to ensure type safety and catch potential issues early
+- **ESLint**: Follow the established linting rules to maintain code consistency
+- **Prettier**: Code is automatically formatted to ensure consistent style
+- **Naming Conventions**: Use camelCase for variables and functions, PascalCase for classes and interfaces
 
 ### Commit Messages
 
-We follow [Conventional Commits](https://www.conventionalcommits.org/):
+We follow [Conventional Commits](https://www.conventionalcommits.org/) to maintain a clear and organized commit history:
 
 ```
 type(scope): description
@@ -121,82 +121,81 @@ refactor: improve token calculation performance
 
 ### Testing Requirements
 
-- **Unit tests** for all new functionality
+- **Unit tests** for all new functionality (we use Vitest)
 - **Integration tests** for complex features
 - **Manual testing** in Obsidian
 - **Maintain 80%+ code coverage**
 
 ```bash
-npm test              # Run tests with coverage
-npm run test:watch    # Watch mode for development
+pnpm test              # Run tests with coverage
+pnpm run test:watch    # Watch mode for development
 ```
 
-## 🧪 Testing Guidelines
+## Testing Guidelines
 
 ### Writing Tests
 
 - Use **Vitest** for unit testing
-- Test files should be in `tests/` directory
-- Follow the existing test patterns
-- Mock Obsidian API interactions
+- Place test files in the `tests/` directory
+- Follow established patterns in existing tests
+- Mock Obsidian API calls using provided helpers
 
 ### Test Categories
 
-1. **Unit Tests**: Test individual functions and classes
-2. **Integration Tests**: Test component interactions
-3. **Edge Cases**: Test error conditions and boundary cases
+1. **Unit tests**: Test individual functions and classes
+2. **Integration tests**: Test component interactions and workflows
+3. **Edge cases**: Test error conditions and boundary cases
 
 ### Manual Testing Checklist
 
-When testing UI changes:
+When testing UI changes, ensure you've covered:
 
-- [ ] Test with different vault sizes
-- [ ] Test with various note structures
-- [ ] Test all export formats
-- [ ] Test error scenarios
-- [ ] Test on different operating systems
+- [ ] Different vault sizes and structures
+- [ ] Various note linking patterns
+- [ ] All export formats and options
+- [ ] Error scenarios and edge cases
+- [ ] Cross-platform compatibility
 
-## 📚 Documentation Standards
+## Documentation Standards
 
 ### Code Documentation
 
-- **JSDoc comments** for all public methods
-- **Inline comments** for complex logic
-- **README updates** for new features
-- **CHANGELOG entries** for all changes
+- **JSDoc comments** for all public methods and classes
+- **Inline comments** for complex logic and algorithms
+- **README updates** for new features and changes
+- **CHANGELOG entries** for all user-facing changes
 
 ### User Documentation
 
-- Update **README.md** for new features
-- Add **examples** for complex functionality
-- Include **screenshots** for UI changes
-- Update **troubleshooting** section if needed
+- Update **README.md** when adding new features
+- Include **examples** for complex functionality
+- Add **screenshots** for UI changes
+- Update **troubleshooting** sections as needed
 
-## 🐛 Bug Reports
+## Reporting Issues
 
 When reporting bugs, please include:
 
-1. **Clear description** of the issue
-2. **Steps to reproduce** the problem
-3. **Expected vs actual behavior**
-4. **Environment details** (OS, Obsidian version, plugin version)
-5. **Error messages** or console output
-6. **Vault information** (size, structure) if relevant
+1. **Clear description** of the issue and expected behavior
+2. **Reproduction steps** with specific details
+3. **Environment information** (OS, Obsidian version, plugin version)
+4. **Error messages** or console output
+5. **Vault information** if relevant to the issue
 
-Use our [bug report template](.github/ISSUE_TEMPLATE/bug_report.yml) for consistency.
+Use our [bug report template](.github/ISSUE_TEMPLATE/bug_report.yml) to ensure all necessary information is provided.
 
-## ✨ Feature Requests
+## Feature Requests
 
-When suggesting features:
+When suggesting new features:
 
-1. **Describe the use case** and problem being solved
-2. **Propose a solution** with UI/UX considerations
-3. **Consider alternatives** and explain why this approach is best
-4. **Align with plugin goals** of LLM-ready export functionality
+1. **Describe the problem** you're trying to solve
+2. **Explain your proposed solution** and how it would work
+3. **Consider alternatives** and explain why your approach is best
+4. **Ensure alignment** with the plugin's core purpose
 
-Use our [feature request template](.github/ISSUE_TEMPLATE/feature_request.yml).
+Use our [feature request template](.github/ISSUE_TEMPLATE/feature_request.yml) to structure your proposal.
 
-## 🔍 Code Review Process
+## Code Review Process
 
 ### For Contributors
 
@@ -204,7 +203,7 @@ Use our [feature request template](.github/ISSUE_TEMPLATE/feature_request.yml).
 2. **Test thoroughly** including edge cases
 3. **Update documentation** as needed
 4. **Follow the PR template** completely
-5. **Be responsive** to feedback and questions
+5. **Respond promptly** to feedback and questions
 
 ### Review Criteria
 
@@ -217,96 +216,36 @@ Pull requests are evaluated on:
 - **Performance** considerations
 - **Backwards compatibility**
 
-## 🏗️ Architecture Guidelines
+## Architecture Guidelines
 
 ### Core Principles
 
 - **Modularity**: Keep components focused and testable
 - **TypeScript**: Leverage strong typing for reliability
 - **Performance**: Consider impact on large vaults
-- **Privacy**: All processing stays local to Obsidian
-- **Extensibility**: Design for future enhancements
+- **User Experience**: Prioritize intuitive and efficient workflows
 
-### File Organization
+### Code Organization
 
-```
-src/
-├── engine/           # Core traversal and export logic
-├── ui/              # User interface components
-├── types.ts         # TypeScript type definitions
-├── obsidian-api.ts  # Obsidian API wrapper
-└── main.ts          # Plugin entry point
+- **Single responsibility**: Each function/class should have a clear, focused purpose
+- **Clear interfaces**: Design APIs that are easy to understand and use
+- **Error handling**: Implement graceful error handling for edge cases
+- **Testing**: Write tests alongside code development
 
-tests/
-├── engine/          # Engine component tests
-├── mocks/           # Test mocks and utilities
-└── fixtures/        # Test data and scenarios
-```
+## Getting Help
 
-## 🤝 Community Guidelines
+### Questions and Support
 
-### Be Respectful
+- **General questions**: [GitHub Discussions](https://github.com/LittleHaku/smart-export-for-llms/discussions)
+- **Bug reports**: [GitHub Issues](https://github.com/LittleHaku/smart-export-for-llms/issues)
+- **Feature requests**: [GitHub Issues](https://github.com/LittleHaku/smart-export-for-llms/issues)
 
-- **Inclusive language** in all communications
-- **Constructive feedback** in code reviews
-- **Patient assistance** with new contributors
-- **Professional tone** in discussions
+### Development Resources
 
-### Getting Help
-
-- **Discussions**: Use GitHub Discussions for questions
-- **Issues**: Use GitHub Issues for bugs and features
-- **Direct contact**: Reach out to @LittleHaku for sensitive matters
-
-## 📊 Performance Considerations
-
-### Key Metrics
-
-- **Vault size**: Support 10,000+ notes
-- **Export speed**: <5 seconds for typical exports
-- **Memory usage**: <100MB during operation
-- **UI responsiveness**: <100ms for interactions
-
-### Optimization Guidelines
-
-- **Lazy loading** for large datasets
-- **Debounced inputs** for real-time updates
-- **Efficient algorithms** for graph traversal
-- **Memory cleanup** after operations
-
-## 🚢 Release Process
-
-### Version Management
-
-We follow [Semantic Versioning](https://semver.org/):
-
-- **MAJOR**: Breaking changes
-- **MINOR**: New features (backwards compatible)
-- **PATCH**: Bug fixes (backwards compatible)
-
-### Release Workflow
-
-1. **Feature development** in feature branches
-2. **Integration** via pull requests to `develop`
-3. **Release preparation** on `release/vX.Y.Z` branches
-4. **Merge to main** triggers automated release
-5. **GitHub release** with automated asset upload
-
-## 🙏 Recognition
-
-Contributors are recognized in:
-
-- **CHANGELOG.md** for their contributions
-- **README.md** contributors section
-- **GitHub contributors** page
-- **Release notes** for significant contributions
-
-## 📞 Questions?
-
-- **General questions**: [GitHub Discussions](https://github.com/LittleHaku/obsidian-llm-export-plugin/discussions)
-- **Bug reports**: [GitHub Issues](https://github.com/LittleHaku/obsidian-llm-export-plugin/issues)
-- **Feature requests**: [GitHub Issues](https://github.com/LittleHaku/obsidian-llm-export-plugin/issues)
+- Review existing code to understand the architecture
+- Examine recent pull requests to understand the process
+- Don't hesitate to ask questions in discussions or issues
 
 ---
 
-**Thank you for contributing to Smart Export for LLMs! Your help makes this plugin better for the entire Obsidian community.** 🎉
+Thank you for contributing to Smart Export for LLMs. Your contributions help make this plugin better for the entire Obsidian community.

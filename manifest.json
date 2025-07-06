@@ -1,10 +1,11 @@
 {
-	"id": "obsidian-llm-export-plugin",
+	"id": "smart-export-for-llms",
 	"name": "Smart Export for LLMs",
 	"version": "1.0.0",
 	"minAppVersion": "0.15.0",
-	"description": "Intelligently export interconnected Obsidian notes for LLM consumption with configurable depth and vault context",
+	"description": "Export interconnected Obsidian notes for LLM consumption with configurable depth and vault context",
 	"author": "Iván Sotillo",
 	"authorUrl": "https://github.com/LittleHaku",
+	"fundingUrl": "https://buymeacoffee.com/littlehaku",
 	"isDesktopOnly": false
 }

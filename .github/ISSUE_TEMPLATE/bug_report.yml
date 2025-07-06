@@ -1,4 +1,4 @@
-name: 🐛 Bug Report
+name: Bug Report
 description: Report a bug or unexpected behavior
 title: "[Bug]: "
 labels: ["bug", "needs-triage"]
@@ -9,7 +9,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to report a bug! Please fill out the following information to help us diagnose and fix the issue.
+        Thank you for taking the time to report this issue. Please provide the following information to help us diagnose and resolve the problem efficiently.
 
   - type: textarea
     id: bug-description
@@ -122,12 +122,12 @@ body:
   - type: checkboxes
     id: terms
     attributes:
-      label: Checklist
-      description: Please confirm the following.
+      label: Submission Checklist
+      description: Please confirm the following before submitting.
       options:
-        - label: I have searched existing issues to make sure this bug hasn't been reported before.
+        - label: I have searched existing issues to ensure this bug hasn't been reported previously.
           required: true
-        - label: I have provided all the requested information above.
+        - label: I have provided all requested information above to the best of my ability.
           required: true
-        - label: I understand that this is a free, open-source project and that responses may take time.
+        - label: I understand this is an open-source project and response times may vary.
           required: true
