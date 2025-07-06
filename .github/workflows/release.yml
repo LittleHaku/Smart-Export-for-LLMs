@@ -5,39 +5,53 @@ on:
     tags:
       - "*"
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: write
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Use Node.js 18.x
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: "18.x"
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
         with:
           version: 8
+          run_install: false
 
-      - name: Build plugin
+      - name: Build
         run: |
-          pnpm install --frozen-lockfile
+          pnpm i
           pnpm run build
 
-      - name: Create release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Get version info
+        id: version
         run: |
-          tag="${GITHUB_REF#refs/tags/}"
+          echo "name=$(git describe --abbrev=0 --tags)" >> $GITHUB_OUTPUT
 
-          gh release create "$tag" \
-            --title="$tag" \
-            --draft \
-            main.js manifest.json styles.css
+      - name: Package plugin archive
+        run: |
+          mkdir ${{ github.event.repository.name }}
+          cp main.js styles.css manifest.json README.md ${{ github.event.repository.name }}
+          zip -r ${{ github.event.repository.name }}-${{ steps.version.outputs.name }}.zip ${{ github.event.repository.name }}
+
+      - name: Create release
+        uses: softprops/action-gh-release@v1
+        with:
+          draft: true
+          files: |
+            ${{ github.event.repository.name }}-${{ steps.version.outputs.name }}.zip
+            styles.css
+            main.js
+            manifest.json
+          name: ${{ steps.version.outputs.name }}
+          prerelease: false
+          tag_name: ${{ github.ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
