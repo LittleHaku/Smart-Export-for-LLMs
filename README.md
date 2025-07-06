@@ -52,12 +52,12 @@ Smart Export gathers related notes using breadth-first traversal and exports the
   ```bash
   # From inside your vault
   cd .obsidian/plugins
-  git clone https://github.com/LittleHaku/obsidian-llm-export-plugin smart-export-llms
+  git clone https://github.com/LittleHaku/Smart-Export-for-LLMs.git smart-export-llms
   ```
 
   Reload Obsidian and enable the plugin from **Settings → Community Plugins**.
 
-- **Alternative (ZIP)**: Download the latest release from [GitHub Releases](https://github.com/LittleHaku/obsidian-llm-export-plugin/releases), and make sure the extracted folder (`smart-export-llms`) is placed inside `.obsidian/plugins/` before reloading Obsidian.
+- **Alternative (ZIP)**: Download the latest release from [GitHub Releases](https://github.com/LittleHaku/Smart-Export-for-LLMs/releases), and make sure the extracted folder (`smart-export-llms`) is placed inside `.obsidian/plugins/` before reloading Obsidian.
 
 ## 🚀 Quick Start
 
@@ -201,8 +201,8 @@ We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.
 ### Development Setup
 
 ```bash
-git clone https://github.com/LittleHaku/obsidian-llm-export-plugin
-cd obsidian-llm-export-plugin
+git clone https://github.com/LittleHaku/Smart-Export-for-LLMs.git
+cd Smart-Export-for-LLMs
 npm install
 npm run dev
 ```
