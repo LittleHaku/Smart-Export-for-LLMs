@@ -1,6 +1,6 @@
 {
 	"name": "smart-export-for-llms",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Export interconnected Obsidian notes for LLM consumption with configurable depth and vault context",
 	"main": "main.js",
 	"scripts": {
