@@ -27,8 +27,8 @@ We welcome contributions of all types:
 2. **Clone** your fork locally:
 
    ```bash
-   git clone https://github.com/LittleHaku/Smart-Export-for-LLMs.git
-   cd Smart-Export-for-LLMs
+   git clone https://github.com/LittleHaku/smart-export-for-llms.git
+   cd smart-export-for-llms
    ```
 
 3. **Install dependencies**:
@@ -50,7 +50,7 @@ We welcome contributions of all types:
      ```bash
      # Inside your test vault
      cd .obsidian/plugins
-     git clone https://github.com/<your-username>/Smart-Export-for-LLMs.git Smart-Export-for-LLMs
+     git clone https://github.com/<your-username>/smart-export-for-llms.git smart-export-for-llms
      ```
 
    Then reload Obsidian and enable the plugin.
@@ -236,9 +236,9 @@ Pull requests are evaluated on:
 
 ### Questions and Support
 
-- **General questions**: [GitHub Discussions](https://github.com/LittleHaku/Smart-Export-for-LLMs/discussions)
-- **Bug reports**: [GitHub Issues](https://github.com/LittleHaku/Smart-Export-for-LLMs/issues)
-- **Feature requests**: [GitHub Issues](https://github.com/LittleHaku/Smart-Export-for-LLMs/issues)
+- **General questions**: [GitHub Discussions](https://github.com/LittleHaku/smart-export-for-llms/discussions)
+- **Bug reports**: [GitHub Issues](https://github.com/LittleHaku/smart-export-for-llms/issues)
+- **Feature requests**: [GitHub Issues](https://github.com/LittleHaku/smart-export-for-llms/issues)
 
 ### Development Resources
 

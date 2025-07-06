@@ -1,10 +1,10 @@
 # Smart Export for LLMs
 
-[![CI/CD](https://github.com/LittleHaku/Smart-Export-for-LLMs/actions/workflows/ci.yml/badge.svg)](https://github.com/LittleHaku/Smart-Export-for-LLMs/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/LittleHaku/Smart-Export-for-LLMs/branch/main/graph/badge.svg)](https://codecov.io/gh/LittleHaku/Smart-Export-for-LLMs/branch/main)
+[![CI/CD](https://github.com/LittleHaku/smart-export-for-llms/actions/workflows/ci.yml/badge.svg)](https://github.com/LittleHaku/smart-export-for-llms/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/LittleHaku/smart-export-for-llms/branch/main/graph/badge.svg)](https://codecov.io/gh/LittleHaku/smart-export-for-llms/branch/main)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Version](https://img.shields.io/github/v/release/LittleHaku/Smart-Export-for-LLMs)](https://github.com/LittleHaku/Smart-Export-for-LLMs/releases)
-[![Downloads](https://img.shields.io/github/downloads/LittleHaku/Smart-Export-for-LLMs/total)](https://github.com/LittleHaku/Smart-Export-for-LLMs/releases)
+[![Version](https://img.shields.io/github/v/release/LittleHaku/smart-export-for-llms)](https://github.com/LittleHaku/smart-export-for-llms/releases)
+[![Downloads](https://img.shields.io/github/downloads/LittleHaku/smart-export-for-llms/total)](https://github.com/LittleHaku/smart-export-for-llms/releases)
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/littlehaku)
 
 Ever found yourself manually copying notes from Obsidian to paste into ChatGPT or Claude? I built this plugin to solve that exact problem.
@@ -45,7 +45,7 @@ Since this plugin is still in development, you'll need to install it manually:
 ```bash
 # From inside your vault
 cd .obsidian/plugins
-git clone https://github.com/LittleHaku/Smart-Export-for-LLMs.git smart-export-llms
+git clone https://github.com/LittleHaku/smart-export-for-llms.git smart-export-for-llms
 ```
 
 Then reload Obsidian and enable the plugin from Settings → Community Plugins.
@@ -174,8 +174,8 @@ I'd love your help improving this plugin! Check out the [Contributing Guidelines
 ### Development setup
 
 ```bash
-git clone https://github.com/LittleHaku/Smart-Export-for-LLMs.git
-cd Smart-Export-for-LLMs
+git clone https://github.com/LittleHaku/smart-export-for-llms.git
+cd smart-export-for-llms
 pnpm install
 pnpm run dev
 ```
