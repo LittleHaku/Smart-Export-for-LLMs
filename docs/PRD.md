@@ -458,7 +458,7 @@ Created: 2024-04-02 23:04
 - **Advanced Pattern Matching**: Rule-based note inclusion/exclusion
 - **Export Analytics**: Track export patterns and frequently used configurations
 - **Integration Marketplace**: Pre-built configurations for popular LLM use cases
-- **Mobile Support**: Export functionality in Obsidian mobile apps
+- **Mobile Support**: Export functionality in Obsidian mobile apps (future consideration)
 - **Semantic Search**: Use embeddings for more sophisticated content similarity
 - **Dynamic Context**: Real-time context suggestions based on LLM conversation history
 
