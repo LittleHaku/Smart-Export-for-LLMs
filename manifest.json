@@ -1,7 +1,7 @@
 {
 	"id": "smart-export-for-llms",
 	"name": "Smart Export for LLMs",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"minAppVersion": "0.15.0",
 	"description": "Export interconnected notes for LLM consumption with configurable depth and vault context",
 	"author": "Iván Sotillo",

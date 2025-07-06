@@ -1,8 +1,7 @@
 {
 	"name": "smart-export-for-llms",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "Export interconnected notes for LLM consumption with configurable depth and vault context",
-
 	"main": "main.js",
 	"scripts": {
 		"dev": "node esbuild.config.mjs",
