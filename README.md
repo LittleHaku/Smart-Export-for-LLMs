@@ -5,71 +5,62 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Version](https://img.shields.io/github/v/release/LittleHaku/Smart-Export-for-LLMs)](https://github.com/LittleHaku/Smart-Export-for-LLMs/releases)
 [![Downloads](https://img.shields.io/github/downloads/LittleHaku/Smart-Export-for-LLMs/total)](https://github.com/LittleHaku/Smart-Export-for-LLMs/releases)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/littlehaku)
 
-**Export interconnected Obsidian notes with configurable depth controls.**
+Ever found yourself manually copying notes from Obsidian to paste into ChatGPT or Claude? I built this plugin to solve that exact problem.
 
-Smart Export gathers related notes using breadth-first traversal and exports them in a single file.
+Smart Export automatically finds all the notes connected to your starting point and exports them in a format that LLMs can actually work with. No more copy-pasting individual notes or losing the connections between your ideas.
 
-## ✨ Key Features
+## What it does
 
-### 🧠 **Smart Note Discovery**
+### Smart note discovery
 
-- **Breadth-First Search**: Automatically discovers interconnected notes through wikilinks
-- **Dual-Depth Control**: Separate controls for full content vs. title-only inclusion
-- **Missing Link Tracking**: Identifies and reports broken wikilinks for vault maintenance
+The plugin follows your wikilinks to find related notes, just like you would when exploring your vault. It uses a breadth-first search, so it finds the most directly connected notes first, then branches out.
 
-### 🎛️ **Flexible Export Options**
+### Flexible depth control
 
-- **XML Format**: Structured export with comprehensive metadata
-- **LLM Markdown**: Optimized format for AI consumption with clear structure
-- **Print-Friendly**: Clean, readable format for human review
+You can control how deep it goes in two ways:
 
-### 📊 **Token-Aware Design**
+- **Content depth**: How many levels of notes to include with full content
+- **Title depth**: How many additional levels to include with just titles for context
 
-- **Real-time Token Counting**: Live estimates as you configure your export
-- **LLM Context Warnings**: Smart alerts for GPT-4 (128k) and Claude (200k) limits
-- **Optimization Guidance**: Helps you stay within context windows
+This lets you get exactly the right amount of context without overwhelming your LLM.
 
-### 🎨 **Modern Interface**
+### Multiple export formats
 
-- **Intuitive Controls**: Card-based layout with clear visual hierarchy
-- **Smart Defaults**: Auto-selects current note, reasonable depth settings
-- **Rich Tooltips**: Built-in help system explains every feature
+- **XML**: Structured format with metadata (good for analysis)
+- **LLM Markdown**: Clean format optimized for AI consumption
+- **Print-friendly**: Simple format for human reading
 
-## 📦 Installation
+### Token awareness
 
-### From Obsidian Community Plugins
+The plugin estimates how many tokens your export will use and warns you if you're approaching common LLM limits (like GPT-4's 128k or Claude's 200k).
 
-1. Open **Settings** → **Community Plugins**
-2. **Browse** and search for "Smart Export for LLMs"
-3. **Install** and **Enable** the plugin
-4. Find the 🧠 brain icon in your ribbon or use **Cmd/Ctrl+P** → "Smart Export"
+## Getting started
 
-### Manual Installation
+### Manual install
 
-- **Clone directly into your vault's plugins folder**
+Since this plugin is still in development, you'll need to install it manually:
 
-  ```bash
-  # From inside your vault
-  cd .obsidian/plugins
-  git clone https://github.com/LittleHaku/Smart-Export-for-LLMs.git smart-export-llms
-  ```
+```bash
+# From inside your vault
+cd .obsidian/plugins
+git clone https://github.com/LittleHaku/Smart-Export-for-LLMs.git smart-export-llms
+```
 
-  Reload Obsidian and enable the plugin from **Settings → Community Plugins**.
+Then reload Obsidian and enable the plugin from Settings → Community Plugins.
 
-- **Alternative (ZIP)**: Download the latest release from [GitHub Releases](https://github.com/LittleHaku/Smart-Export-for-LLMs/releases), and make sure the extracted folder (`smart-export-llms`) is placed inside `.obsidian/plugins/` before reloading Obsidian.
+## How to use it
 
-## 🚀 Quick Start
+1. **Open the export dialog**: Click the 🧠 brain icon or use Cmd/Ctrl+P → "Smart Export"
+2. **Pick your starting note**: It'll default to your current note, or you can choose any note
+3. **Set your depths**: I recommend starting with Content Depth: 3, Title Depth: 6
+4. **Choose your format**: XML for structured data, Markdown for readability
+5. **Export**: Click "Export to Clipboard" and paste into your favorite LLM
 
-1. **Open the Export Dialog**: Click the 🧠 brain icon in the ribbon or use **Cmd/Ctrl+P** → "Smart Export"
-2. **Select Root Note**: Choose your starting point (defaults to current note)
-3. **Adjust Depth**: Set how deep to traverse (Content Depth: 3, Title Depth: 6 recommended)
-4. **Choose Format**: Pick XML for structured data or Markdown for readability
-5. **Export**: Click "🚀 Export to Clipboard" and paste into your favorite LLM
+## Example exports
 
-## 📋 Export Formats
-
-### XML Format
+### XML format
 
 ```xml
 <obsidian_export>
@@ -109,128 +100,114 @@ Smart Export gathers related notes using breadth-first traversal and exports the
 Content with [[wikilinks]] preserved...
 ```
 
-## ⚙️ Configuration
+## Settings
 
-### Depth Controls
+You can customize the defaults in Settings → Smart Export for LLMs:
 
-- **Content Depth (1-20)**: Levels of linked notes to include full content
-- **Title Depth (1-30)**: Additional levels to include titles only for context
-- _Rule_: Title Depth must be ≥ Content Depth
+- **Default Content Depth**: How deep to go with full content (1-20)
+- **Default Title Depth**: How deep to go with titles only (1-30)
+- **Default Export Format**: Your preferred output format
+- **Auto-select Current Note**: Whether to automatically pick your active note
 
-### Export Settings
+## What I use it for
 
-Access via **Settings** → **Smart Export for LLMs**:
+### Research analysis
 
-- **Default Content Depth**: Your preferred starting depth for content
-- **Default Title Depth**: Your preferred starting depth for titles
-- **Default Export Format**: Choose your preferred output format
-- **Auto-select Current Note**: Whether to automatically pick the active note
+I'll export a cluster of notes about a topic and ask the LLM to identify themes, connections, and gaps in my thinking.
 
-## 🎯 Use Cases
+### Writing help
 
-### 📚 **Research & Analysis**
+When I'm writing about something, I export my research notes and ask the LLM to help me structure the content or identify missing pieces.
 
-```
-Prompt: "Analyze these interconnected notes about [topic] and identify key themes, connections, and knowledge gaps."
-```
+### Knowledge discovery
 
-### ✍️ **Content Creation**
+Sometimes I'll export a broad set of notes and ask the LLM to suggest new connections or research directions I haven't explored yet.
 
-```
-Prompt: "Based on these notes, write a comprehensive article about [topic], ensuring you reference the key concepts and relationships shown."
-```
+### Study assistance
 
-### 🔍 **Knowledge Discovery**
+When learning something new, I export my notes and ask the LLM to create study guides or explain concepts in different ways.
 
-```
-Prompt: "Review these notes and suggest 5 new connections or research directions I should explore in my vault."
-```
+## Tips for best results
 
-### 📖 **Study Assistant**
+### Token management
 
-```
-Prompt: "Create a study guide from these interconnected notes, organizing the concepts hierarchically and highlighting important relationships."
-```
+- Start with Content Depth 2-3 for most uses
+- Use Title Depth 5-8 to get broader context without overwhelming content
+- Watch the token counter to stay within your LLM's limits
 
-## 🔧 Advanced Tips
+### Organizing your notes
 
-### Optimizing Token Usage
-
-- Start with **Content Depth: 2-3** for most use cases
-- Use **Title Depth: 5-8** to provide broader context without overwhelming content
-- Monitor the token counter to stay within your LLM's limits
-
-### Organizing for Export
-
-- Use descriptive note titles (they appear in title-only levels)
+- Use descriptive note titles (they show up in title-only levels)
 - Create hub notes that link to related concepts
-- Maintain clean wikilink structure for better traversal
+- Keep your wikilinks clean and consistent
 
-### Export Strategies
+### Export strategies
 
-- **Deep Dive**: High content depth (4-6) for comprehensive analysis
-- **Broad Overview**: Low content depth (1-2), high title depth (8-12) for big picture
-- **Balanced**: Medium depths (3/6) for most research and writing tasks
+- **Deep dive**: High content depth (4-6) for comprehensive analysis
+- **Broad overview**: Low content depth (1-2), high title depth (8-12) for big picture
+- **Balanced**: Medium depths (3/6) for most research and writing
 
-## 🐛 Troubleshooting
+## Common issues
 
-### Common Issues
+**"No notes found" or empty export?**
 
-**"No notes found" or empty export:**
+- Make sure your starting note has wikilinks to other notes
+- Check that the linked notes actually exist in your vault
+- Verify the note names match your wikilinks exactly
 
-- Ensure your root note has wikilinks to other notes
-- Check that linked notes exist in your vault
-- Verify note names match wikilink text exactly
+**Token count too high?**
 
-**Token count too high:**
+- Reduce your Content Depth or Title Depth
+- Pick a more specific starting note with fewer connections
+- Try the Print-Friendly format for smaller exports
 
-- Reduce Content Depth or Title Depth
-- Choose a more specific root note with fewer connections
-- Use Print-Friendly format for smaller exports
+**Missing links reported?**
 
-**Missing links reported:**
+- Check the export output for the list of missing notes
+- Fix any broken wikilinks in your vault
+- Make sure you're using exact note names in your links
 
-- Check the export output for missing notes list
-- Fix broken wikilinks in your vault
-- Use exact note names in your wikilinks
+## Contributing
 
-## 🤝 Contributing
+I'd love your help improving this plugin! Check out the [Contributing Guidelines](CONTRIBUTING.md) for details on how to get started.
 
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
-
-### Development Setup
+### Development setup
 
 ```bash
 git clone https://github.com/LittleHaku/Smart-Export-for-LLMs.git
 cd Smart-Export-for-LLMs
-npm install
-npm run dev
+pnpm install
+pnpm run dev
 ```
 
-## 📄 License
+## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 💖 Support
+## Support
 
-If Smart Export saves you time and enhances your workflow, consider supporting its development:
+If Smart Export for LLMs helps you work more efficiently, consider supporting its development:
 
-- ⭐ **Star this repo** to show your support
-- 🐛 **Report issues** to help improve the plugin
+- ⭐ **Star this repository** to show your support
+- 🐛 **Report bugs** to help improve the plugin
 - 💡 **Share ideas** for new features
-- ☕ **Buy me a coffee** (coming soon!)
+- ☕ **Buy me a coffee** to support continued development
 
-## 🗺️ Roadmap
+### ☕ Support Development
 
-### Coming Soon
+This plugin is free and open-source, but if it saves you time and enhances your workflow, consider [buying me a coffee](https://buymeacoffee.com/littlehaku). Your support helps me continue developing and maintaining this plugin for the Obsidian community.
 
-- **Vault Context**: Include broader vault context for knowledge gap analysis
-- **Template System**: Pre-built prompts for common LLM workflows
-- **Export Presets**: Save and reuse your favorite configurations
-- **Batch Export**: Export multiple root notes at once
+## What's coming next
+
+I'm working on:
+
+- **Vault context**: Include broader vault information for better LLM understanding
+- **Template system**: Pre-built prompts for common workflows
+- **Export presets**: Save and reuse your favorite configurations
+- **Batch exports**: Export multiple starting notes at once
 
 ---
 
-**Made with ❤️ for the Obsidian community**
+**Built for the Obsidian community with ❤️**
 
-_Export your notes with ease._
+_Because your notes deserve better than copy-paste._

@@ -1,4 +1,4 @@
-name: ✨ Feature Request
+name: Feature Request
 description: Suggest a new feature or enhancement
 title: "[Feature]: "
 labels: ["enhancement", "needs-triage"]
@@ -9,7 +9,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for suggesting a new feature! Please provide detailed information to help us understand and evaluate your request.
+        Thank you for suggesting a new feature. Please provide detailed information to help us understand and evaluate your proposal effectively.
 
   - type: textarea
     id: feature-description
@@ -100,12 +100,12 @@ body:
   - type: checkboxes
     id: terms
     attributes:
-      label: Checklist
-      description: Please confirm the following.
+      label: Submission Checklist
+      description: Please confirm the following before submitting.
       options:
-        - label: I have searched existing issues to make sure this feature hasn't been requested before.
+        - label: I have searched existing issues to ensure this feature hasn't been requested previously.
           required: true
-        - label: This feature aligns with the plugin's purpose of LLM-ready note export.
+        - label: This feature aligns with the plugin's core purpose of LLM-ready note export.
           required: true
-        - label: I understand that feature development takes time and this request may not be implemented immediately.
+        - label: I understand that feature development requires time and this request may not be implemented immediately.
           required: true

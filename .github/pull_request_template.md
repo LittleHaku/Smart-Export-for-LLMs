@@ -1,24 +1,24 @@
-## 📝 Description
+## Description
 
-Briefly describe what this PR does and why it's needed.
+Briefly describe what this PR accomplishes and why it's needed.
 
 **Related Issue(s):** Fixes #(issue_number)
 
-## 🔄 Type of Change
+## Type of Change
 
 Please check the relevant option:
 
-- [ ] 🐛 Bug fix (non-breaking change that fixes an issue)
-- [ ] ✨ New feature (non-breaking change that adds functionality)
-- [ ] 💥 Breaking change (fix or feature that would cause existing functionality to not work as expected)
-- [ ] 📚 Documentation update
-- [ ] 🎨 Code style/formatting changes (no functional changes)
-- [ ] ♻️ Refactoring (no functional changes)
-- [ ] ⚡ Performance improvements
-- [ ] 🧪 Tests (adding or updating tests)
-- [ ] 🔧 Maintenance (dependency updates, tooling changes)
+- [ ] Bug fix (non-breaking change that fixes an issue)
+- [ ] New feature (non-breaking change that adds functionality)
+- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
+- [ ] Documentation update
+- [ ] Code style/formatting changes (no functional changes)
+- [ ] Refactoring (no functional changes)
+- [ ] Performance improvements
+- [ ] Tests (adding or updating tests)
+- [ ] Maintenance (dependency updates, tooling changes)
 
-## 🧪 Testing
+## Testing
 
 Please describe how you tested your changes:
 
@@ -34,7 +34,7 @@ Please describe how you tested your changes:
 - **Operating System:**
 - **Plugin Version:**
 
-## 📋 Checklist
+## Checklist
 
 Please check all applicable items:
 
@@ -65,14 +65,14 @@ Please check all applicable items:
 - [ ] I have considered the impact on existing user workflows
 - [ ] My changes work with the minimum supported Obsidian version
 
-## 📸 Screenshots/GIFs (if applicable)
+## Screenshots/GIFs (if applicable)
 
 If your changes affect the UI, please include screenshots or GIFs showing:
 
 - Before (current behavior)
 - After (new behavior)
 
-## 🔗 Additional Context
+## Additional Context
 
 Add any other relevant information about the PR:
 
@@ -81,7 +81,7 @@ Add any other relevant information about the PR:
 - Migration guide (if needed)
 - Future improvements this enables
 
-## 📋 Reviewer Notes
+## Reviewer Notes
 
 Any specific areas you'd like reviewers to focus on:
 
@@ -93,4 +93,4 @@ Any specific areas you'd like reviewers to focus on:
 
 ---
 
-**Thank you for contributing to Smart Export for LLMs! 🎉**
+**Thank you for contributing to Smart Export for LLMs.**
