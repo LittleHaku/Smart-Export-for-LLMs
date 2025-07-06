@@ -1,9 +1,12 @@
-name: Release Obsidian Plugin
+name: Create Plugin Release
 
 on:
   push:
     tags:
       - "*"
+
+env:
+  PLUGIN_NAME: smart-export-for-llms
 
 permissions:
   contents: write
@@ -12,46 +15,46 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "18.x"
+      - name: Determine prerelease status
+        id: status
+        run: |
+          if [[ "${{ github.ref }}" == *"canary"* ]] || [[ "${{ github.ref }}" == *"alpha"* ]] || [[ "${{ github.ref }}" == *"beta"* ]]; then
+            echo "prerelease=true" >> $GITHUB_OUTPUT
+          else
+            echo "prerelease=false" >> $GITHUB_OUTPUT
+          fi
 
-      - uses: pnpm/action-setup@v2
-        name: Install pnpm
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
         with:
-          version: 8
-          run_install: false
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "pnpm"
 
       - name: Build
+        id: build
         run: |
-          pnpm i
+          pnpm install --frozen-lockfile
           pnpm run build
+          mkdir ${{ env.PLUGIN_NAME }}
+          cp main.js manifest.json styles.css README.md ${{ env.PLUGIN_NAME }}
+          zip -r ${{ env.PLUGIN_NAME }}-${{ github.ref_name }}.zip ${{ env.PLUGIN_NAME }}
 
-      - name: Get version info
-        id: version
-        run: |
-          echo "name=$(git describe --abbrev=0 --tags)" >> $GITHUB_OUTPUT
-
-      - name: Package plugin archive
-        run: |
-          mkdir ${{ github.event.repository.name }}
-          cp main.js styles.css manifest.json README.md ${{ github.event.repository.name }}
-          zip -r ${{ github.event.repository.name }}-${{ steps.version.outputs.name }}.zip ${{ github.event.repository.name }}
-
-      - name: Create release
-        uses: softprops/action-gh-release@v1
+      - name: Release
+        id: release
+        uses: softprops/action-gh-release@v2
         with:
-          draft: true
+          prerelease: ${{ steps.status.outputs.prerelease }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           files: |
-            ${{ github.event.repository.name }}-${{ steps.version.outputs.name }}.zip
-            styles.css
+            ${{ env.PLUGIN_NAME }}-${{ github.ref_name }}.zip
             main.js
             manifest.json
-          name: ${{ steps.version.outputs.name }}
-          prerelease: false
-          tag_name: ${{ github.ref }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+            styles.css
