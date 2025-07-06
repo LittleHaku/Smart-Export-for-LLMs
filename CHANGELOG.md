@@ -111,7 +111,7 @@ The core Smart Export functionality is now feature-complete and ready for produc
   - **Token Awareness**: Added smart warnings for LLM context limits (GPT-4, Claude).
   - **Improved Status Feedback**: Added visual indicators for operations (✅, ❌, 🔄).
   - **Better Export Format Descriptions**: Added clear explanations for each export type.
-  - **Responsive Design**: Added mobile-friendly layout adjustments.
+  - **Responsive Design**: Added layout adjustments for better usability.
   - **Enhanced Typography**: Improved font sizes, weights, and spacing.
   - **Modern Button Styling**: Added hover effects and better visual feedback.
 - Split Markdown export into two formats:

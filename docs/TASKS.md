@@ -196,7 +196,7 @@
 - [ ] Templater plugin integration
 - [ ] Calendar plugin note filtering
 - [ ] Graph view integration
-- [ ] Mobile app compatibility
+- [ ] Mobile app compatibility (future consideration)
 
 ---
 
@@ -356,7 +356,7 @@ const calculateRelevance = (note: VaultContextNote, exportedContent: string[]): 
 - Smart context with relevance scoring
 - Machine learning integration
 - Advanced analytics
-- Mobile support
+- Mobile support (future consideration)
 
 ---
 

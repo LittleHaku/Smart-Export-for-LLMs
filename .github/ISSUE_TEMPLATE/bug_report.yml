@@ -83,8 +83,6 @@ body:
         - Windows
         - macOS
         - Linux
-        - Mobile (iOS)
-        - Mobile (Android)
     validations:
       required: true
 
