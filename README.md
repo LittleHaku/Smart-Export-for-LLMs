@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Version](https://img.shields.io/github/v/release/LittleHaku/smart-export-for-llms)](https://github.com/LittleHaku/smart-export-for-llms/releases)
 [![Downloads](https://img.shields.io/github/downloads/LittleHaku/smart-export-for-llms/total)](https://github.com/LittleHaku/smart-export-for-llms/releases)
-[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/littlehaku)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-support%20me-orange?logo=buy-me-a-coffee&logoColor=white&style=flat)](https://buymeacoffee.com/littlehaku)
 
 Ever found yourself manually copying notes from Obsidian to paste into ChatGPT or Claude? I built this plugin to solve that exact problem.
 
@@ -40,15 +40,16 @@ The plugin estimates how many tokens your export will use and warns you if you'r
 
 ### Manual install
 
-Since this plugin is still in development, you'll need to install it manually:
+For beta testing and the easiest way to install pre-release plugins, use the [BRAT (Beta Reviewers Auto-update Tool)](https://github.com/TfTHacker/obsidian42-brat) plugin by TfTHacker:
 
-```bash
-# From inside your vault
-cd .obsidian/plugins
-git clone https://github.com/LittleHaku/smart-export-for-llms.git smart-export-for-llms
-```
+1. In Obsidian, go to **Settings → Community Plugins → Browse** and search for "BRAT" by TfTHacker. Install and enable it.
+2. Once BRAT is enabled, open its settings and click **Add a new plugin**.
+3. Paste this repository link: `https://github.com/LittleHaku/smart-export-for-llms`
+4. Select the latest version when prompted.
+5. BRAT will handle installation and updates for you.
 
-Then reload Obsidian and enable the plugin from Settings → Community Plugins.
+This is the recommended way to beta test plugins, as it keeps everything up to date and avoids manual file management.
+
 
 ## How to use it
 
