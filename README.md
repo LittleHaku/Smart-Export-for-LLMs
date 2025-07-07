@@ -38,7 +38,7 @@ The plugin estimates how many tokens your export will use and warns you if you'r
 
 ## Getting started
 
-### Manual install
+### Installation
 
 For beta testing and the easiest way to install pre-release plugins, use the [BRAT (Beta Reviewers Auto-update Tool)](https://github.com/TfTHacker/obsidian42-brat) plugin by TfTHacker:
 
