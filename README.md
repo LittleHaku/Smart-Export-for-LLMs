@@ -50,7 +50,6 @@ For beta testing and the easiest way to install pre-release plugins, use the [BR
 
 This is the recommended way to beta test plugins, as it keeps everything up to date and avoids manual file management.
 
-
 ## How to use it
 
 1. **Open the export dialog**: Click the 🧠 brain icon or use Cmd/Ctrl+P → "Smart Export"
